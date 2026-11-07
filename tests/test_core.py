@@ -67,7 +67,8 @@ class CoreTests(unittest.TestCase):
         self.assertFalse(other["duplicate"])
         self.assertEqual(first["name"], "manual.txt")
         managed = self.core.source_path(first["id"], None)
-        self.assertEqual(managed.parent, self.data / "documents")
+        # Windows temporary directories may use an equivalent 8.3 short path.
+        self.assertEqual(managed.parent, self.data.resolve() / "documents")
         self.assertEqual(managed.read_bytes(), source.read_bytes())
         self.assertNotIn("storage_name", first)
         self.assertNotIn("sha256", first)
