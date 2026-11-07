@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "embedding": {
+    "implementation": "e5-onnx-maskedmean-v2",
+    "model_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "files": {
+      "model_qint8_avx512_vnni.onnx": {
+        "size": 118346824,
+        "sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88"
+      },
+      "tokenizer.json": {
+        "size": 17082730,
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"
+      }
+    },
+    "dimension": 384,
+    "max_tokens": 512,
+    "query_prefix": "query: ",
+    "document_prefix": "passage: ",
+    "padding": "right; tokenizer <pad> ID; attention mask",
+    "pooling": "attention_mask_mean",
+    "normalization": "l2_float32",
+    "batch_size": 1,
+    "batch_policy": "one_text_per_inference_for_corpus_independence",
+    "fingerprint": "f7242eb613345c20dd27f2fbd7ae6c311e2537549123ca178109beb46a95741a",
+    "local_only": true,
+    "runtime": "onnxruntime",
+    "runtime_version": "1.31.1",
+    "tokenizers_version": "0.23.3",
+    "numpy_version": "2.5.4",
+    "provider": "CPUExecutionProvider",
+    "intra_op_threads": 4
+  },
+  "same_text_alone_vs_batched_max_abs": 0.0,
+  "same_text_reversed_batch_max_abs": 0.0,
+  "test_data": "two synthetic public passages; no user files",
+  "generated_api_calls": 0
+}

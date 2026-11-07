@@ -1,0 +1,26 @@
+{
+  "status": "completed",
+  "video": "offline-demo.webm",
+  "elapsed_seconds": 24.3,
+  "browser": "isolated headless Microsoft Edge",
+  "data": "seeded demo engineering account and corpus",
+  "workflow": [
+    "demo login",
+    "offline evidence question",
+    "source lines",
+    "actual test-split retrieval evaluation",
+    "case results"
+  ],
+  "model_calls": "none; answer mode stays extractive and generated provider is not configured",
+  "network": "local test origin only",
+  "overlay_or_mocked_success": false,
+  "source_recording": "knowtrace-offline-2026-11-07T12-54-36-140Z.webm",
+  "decoded_media": {
+    "duration_seconds": 23.56,
+    "width": 1440,
+    "height": 1000,
+    "codec": "VP8",
+    "fps": 25,
+    "validation": "decoded by local ffmpeg during recording QA"
+  }
+}

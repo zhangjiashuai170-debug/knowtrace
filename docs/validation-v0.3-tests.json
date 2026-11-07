@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-07T23:28:09.964647+09:00",
+  "python": {
+    "passed": 334,
+    "subtests_passed": 9,
+    "duration_seconds": 29.98
+  },
+  "browser": {
+    "legacy_groups": 8,
+    "semantic_groups": 5,
+    "generated_api_calls": 0
+  },
+  "source_generation": "fixed public-model local semantic edition",
+  "main_service": {
+    "version": "0.3.0",
+    "model": "deepseek-flash",
+    "last_success_at": "2026-11-07T14:24:39.872410+00:00",
+    "last_success_scope": "isolated_synthetic_preflight",
+    "retrieval_modes": [
+      "bm25",
+      "tfidf",
+      "hybrid",
+      "semantic",
+      "semantic_hybrid"
+    ],
+    "embedding_fingerprint": "f7242eb613345c20dd27f2fbd7ae6c311e2537549123ca178109beb46a95741a",
+    "batch_size": 1,
+    "default_retrieval_mode": "hybrid",
+    "default_answer_mode": "extractive"
+  }
+}

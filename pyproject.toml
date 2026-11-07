@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "knowtrace"
+version = "0.3.0"
+description = "Offline evidence-first document retrieval portfolio application"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+  "python-multipart>=0.0.18,<1",
+  "PyMuPDF>=1.24,<2",
+  "pypdf>=5,<7",
+  "python-docx>=1.1,<2",
+  "httpx>=0.27,<1",
+  "jieba==0.42.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1"]
+semantic = ["numpy>=2,<3", "onnxruntime>=1.20,<2", "tokenizers>=0.21,<1"]
+
+[project.scripts]
+knowtrace = "knowtrace.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["knowtrace*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>
+      KnowTrace · 让答案有据可循
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer>
+    </script>
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#ask" aria-label="KnowTrace 首页">
+        <span class="brand-symbol">
+          K
+          <span>
+            ·
+          </span>
+        </span>
+        <span>
+          KnowTrace
+          <small>
+            可追溯知识工作台
+          </small>
+        </span>
+      </a>
+      <div class="nav-label">
+        工作空间
+      </div>
+      <nav aria-label="主导航">
+        <button class="nav-item selected" data-view="ask" aria-current="page">
+          <span class="nav-icon">
+            ⌕
+          </span>
+          证据问答
+          <span class="nav-number">
+            01
+          </span>
+        </button>
+        <button class="nav-item" data-view="library">
+          <span class="nav-icon">
+            ▤
+          </span>
+          知识库
+          <span class="nav-number">
+            02
+          </span>
+        </button>
+        <button class="nav-item" data-view="evaluation">
+          <span class="nav-icon">
+            ▥
+          </span>
+          检索评测
+          <span class="nav-number">
+            03
+          </span>
+        </button>
+      </nav>
+      <div class="workspace-scope">
+        <span class="status-dot">
+        </span>
+        <span>
+          当前可访问范围
+          <strong id="scope-label">
+            尚未登录
+          </strong>
+        </span>
+      </div>
+      <div class="sidebar-bottom">
+        <span class="eyebrow">
+          BUILT FOR EVIDENCE
+        </span>
+        <p>
+          从文档出发，
+          <br>
+          回到可以核对的原文。
+        </p>
+        <div class="small-note">
+          BM25 · TF-IDF · RRF
+        </div>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <span class="breadcrumb">
+          工作空间
+          <span>
+            /
+          </span>
+          <strong id="page-label">
+            证据问答
+          </strong>
+        </span>
+        <div class="top-actions">
+          <span class="health-pill" id="health-status">
+            正在检查服务
+          </span>
+          <span class="user-name" id="user-name">
+            访客
+          </span>
+          <button class="button small ghost" id="switch-user">
+            切换账号
+          </button>
+        </div>
+      </header>
+      <main>
+        <div id="global-alert" class="alert hidden" role="alert">
+        </div>
+        <section class="view" id="view-ask" aria-labelledby="ask-title">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow">
+                EVIDENCE, BEFORE ANSWERS
+              </div>
+              <h1 id="ask-title">
+                让每一次回答，
+                <br>
+                都有据可查
+                <span class="teal">
+                  。
+                </span>
+              </h1>
+              <p>
+                检索文档、摘录证据，并保留回到原文的路径。
+              </p>
+            </div>
+            <span class="outline-badge">
+              证据优先 · 可追溯
+            </span>
+          </div>
+          <div class="stat-strip">
+            <div>
+              <strong id="stat-kbs">
+                —
+              </strong>
+              <span>
+                可访问知识库
+              </span>
+            </div>
+            <div>
+              <strong id="stat-docs">
+                —
+              </strong>
+              <span>
+                已收录文档
+              </span>
+            </div>
+            <div>
+              <strong id="stat-chunks">
+                —
+              </strong>
+              <span>
+                可检索片段
+              </span>
+            </div>
+            <p>
+              默认使用离线检索与证据摘录。
+              <br>
+              模型回答需由服务端另行配置。
+            </p>
+          </div>
+          <div class="ask-layout">
+            <div class="ask-main">
+              <form class="panel query-panel" id="question-form">
+                <div class="panel-heading">
+                  <h2>
+                    从一个问题开始
+                  </h2>
+                  <span class="small-note">
+                    支持中文提问
+                  </span>
+                </div>
+                <label class="sr-only" for="question">
+                  输入问题
+                </label>
+                <textarea id="question" rows="4" maxlength="2000" placeholder="例如：如何在 FastAPI 中定义路径参数？" required>
+                </textarea>
+                <div class="answer-configuration">
+                  <div class="field answer-mode-field">
+                    <label for="answer-mode">回答方式</label>
+                    <select id="answer-mode">
+                      <option value="extractive" selected>离线证据摘录</option>
+                      <option id="generated-option" value="generated" disabled>模型回答 · 未配置</option>
+                    </select>
+                  </div>
+                  <div class="model-status-box">
+                    <p id="model-status" class="small-note" aria-live="polite">登录后读取模型配置状态。</p>
+                    <button type="button" class="text-button" id="refresh-model">刷新配置状态</button>
+                  </div>
+                </div>
+                <div class="query-controls">
+                  <div class="field">
+                    <label for="ask-mode">
+                      检索模式
+                    </label>
+                    <select id="ask-mode">
+                      <option value="hybrid">
+                        词法混合 · RRF
+                      </option>
+                      <option value="bm25">
+                        关键词 · BM25
+                      </option>
+                      <option value="tfidf">
+                        字符 · TF-IDF
+                      </option>
+                      <option value="semantic" disabled>语义向量 · 本地</option>
+                      <option value="semantic_hybrid" disabled>向量＋词法 · RRF</option>
+                    </select>
+                  </div>
+                  <div class="field compact">
+                    <label for="ask-topk">
+                      返回片段
+                    </label>
+                    <select id="ask-topk">
+                      <option>
+                        3
+                      </option>
+                      <option selected>
+                        5
+                      </option>
+                      <option>
+                        10
+                      </option>
+                    </select>
+                  </div>
+                  <button type="button" class="button secondary" id="search-button">
+                    仅检索
+                  </button>
+                  <button type="submit" class="button primary" id="ask-button">
+                    查找证据
+                    <span>
+                      ↗
+                    </span>
+                  </button>
+                </div>
+                <p class="small-note" id="retrieval-status" aria-live="polite">登录后读取本地语义检索状态。</p>
+                <p class="form-note" id="ask-note" aria-live="polite">
+                  问答仅使用当前账号可访问、且在右侧勾选的知识库。
+                </p>
+              </form>
+              <section class="panel result-panel" aria-labelledby="result-title">
+                <div class="panel-heading">
+                  <h2 id="result-title">
+                    证据回答
+                  </h2>
+                  <div class="result-tools">
+                    <span id="result-meta" class="small-note">
+                    </span>
+                    <button type="button" class="text-button hidden" id="copy-answer">
+                      复制
+                    </button>
+                  </div>
+                </div>
+                <div id="answer-empty" class="empty-state">
+                  <span class="empty-symbol">
+                    ⌕
+                  </span>
+                  <h3>
+                    等待你的第一个问题
+                  </h3>
+                  <p>
+                    检索完成后，答案与来源会一起出现在这里。
+                  </p>
+                </div>
+                <p id="answer-provenance" class="answer-provenance hidden"></p>
+                <div id="answer-content" class="answer-text hidden">
+                </div>
+                <p id="evidence-decision" class="evidence-decision hidden"></p>
+                <h3 id="sources-heading" class="source-section-title hidden">实际引用来源</h3>
+                <div id="sources" class="source-list">
+                </div>
+                <section id="candidate-section" class="candidate-section hidden" aria-labelledby="candidate-title">
+                  <h3 id="candidate-title">未验证候选</h3>
+                  <p id="candidate-explanation" class="small-note">这些片段仅被检索到，尚未作为本次回答依据。</p>
+                  <div id="candidates" class="source-list"></div>
+                </section>
+              </section>
+            </div>
+            <aside class="panel scope-panel">
+              <div class="panel-heading">
+                <h2>
+                  检索范围
+                </h2>
+                <button class="text-button" id="select-all-kbs">
+                  全选
+                </button>
+              </div>
+              <div id="kb-options" class="kb-options">
+                <p class="small-note">
+                  登录后加载知识库
+                </p>
+              </div>
+              <div class="scope-explainer">
+                <span class="eyebrow">
+                  HOW IT WORKS
+                </span>
+                <ol>
+                  <li>
+                    在所选文档中匹配片段
+                  </li>
+                  <li>
+                    先筛选证据，再按所选方式回答
+                  </li>
+                  <li>
+                    通过页码或行号定位原文
+                  </li>
+                </ol>
+                <p>
+                  证据不足时明确拒答。此版本不评估生成模型的回答质量。
+                </p>
+              </div>
+            </aside>
+          </div>
+        </section>
+        <section class="view hidden" id="view-library" aria-labelledby="library-title">
+          <div class="page-heading compact-heading">
+            <div>
+              <div class="eyebrow">
+                YOUR SOURCE OF TRUTH
+              </div>
+              <h1 id="library-title">
+                知识库与文档
+              </h1>
+              <p>
+                把资料收进来，让每个片段都能找到出处。
+              </p>
+            </div>
+            <button class="button secondary hidden" id="new-kb">
+              ＋ 新建知识库
+            </button>
+          </div>
+          <section class="panel upload-panel">
+            <div>
+              <h2>
+                收录一份新资料
+              </h2>
+              <p class="small-note">
+                支持 PDF、Markdown、TXT、DOCX。PDF 使用实际页码，文本使用章节与行号。
+              </p>
+            </div>
+            <form id="upload-form">
+              <div class="upload-fields">
+                <div class="field">
+                  <label for="upload-kb">
+                    存入知识库
+                  </label>
+                  <select id="upload-kb" required>
+                  </select>
+                </div>
+                <div class="field file-field">
+                  <label for="upload-file">
+                    选择文档
+                  </label>
+                  <input type="file" id="upload-file" accept=".pdf,.md,.txt,.docx" required>
+                </div>
+                <div class="field">
+                  <label for="source-url">
+                    原文链接
+                    <span class="small-note">
+                      可选
+                    </span>
+                  </label>
+                  <input id="source-url" type="url" placeholder="https://…">
+                </div>
+                <button class="button primary" type="submit" id="upload-button">
+                  上传并收录
+                </button>
+              </div>
+              <p class="form-note" id="upload-note" aria-live="polite">
+                文件在本机解析，收录完成后即可检索。
+              </p>
+            </form>
+          </section>
+          <section class="panel">
+            <div class="panel-heading library-toolbar">
+              <h2>
+                文档目录
+                <span class="counter" id="document-count">
+                  0
+                </span>
+              </h2>
+              <div class="toolbar-controls">
+                <label class="sr-only" for="document-filter">
+                  筛选知识库
+                </label>
+                <select id="document-filter">
+                  <option value="">
+                    全部知识库
+                  </option>
+                </select>
+                <button class="button small ghost" id="refresh-documents">
+                  刷新
+                </button>
+              </div>
+            </div>
+            <div id="document-list" class="document-list">
+              <div class="empty-state">
+                <p>
+                  正在加载文档
+                </p>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="view hidden" id="view-evaluation" aria-labelledby="evaluation-title">
+          <div class="page-heading compact-heading">
+            <div>
+              <div class="eyebrow">
+                MEASURE WHAT YOU RETRIEVE
+              </div>
+              <h1 id="evaluation-title">
+                把检索效果，放到同一把尺上
+              </h1>
+              <p>
+                运行固定数据集，比较召回、排序、拒答表现与延迟。
+              </p>
+            </div>
+            <span class="outline-badge">
+              真实运行指标
+            </span>
+          </div>
+          <form id="evaluation-form" class="panel evaluation-form">
+            <div class="field">
+              <label for="dataset">
+                评测数据集
+              </label>
+              <select id="dataset" required>
+              </select>
+              <span class="small-note" id="dataset-description">
+              </span>
+            </div>
+            <div class="field">
+              <label for="evaluation-mode">
+                检索模式
+              </label>
+              <select id="evaluation-mode">
+                <option value="hybrid">
+                  词法混合 · RRF
+                </option>
+                <option value="bm25">
+                  关键词 · BM25
+                </option>
+                <option value="tfidf">
+                  字符 · TF-IDF
+                </option>
+                <option value="semantic" disabled>语义向量 · 本地</option>
+                <option value="semantic_hybrid" disabled>向量＋词法 · RRF</option>
+              </select>
+              <span class="small-note" id="evaluation-retrieval-status" aria-live="polite">登录后读取本地语义检索状态。</span>
+            </div>
+            <div class="field">
+              <label for="evaluation-split">
+                题目分组
+              </label>
+              <select id="evaluation-split">
+                <option value="">
+                  全部题目
+                </option>
+                <option value="dev">
+                  开发集 · dev
+                </option>
+                <option value="test">
+                  测试集 · test
+                </option>
+              </select>
+            </div>
+            <div class="field compact">
+              <label for="evaluation-topk">
+                Top K
+              </label>
+              <select id="evaluation-topk">
+                <option>
+                  3
+                </option>
+                <option selected>
+                  5
+                </option>
+                <option>
+                  10
+                </option>
+              </select>
+            </div>
+            <button class="button primary" type="submit" id="run-evaluation">
+              运行评测
+              <span>
+                ↗
+              </span>
+            </button>
+            <p class="form-note" id="evaluation-note" aria-live="polite">
+              数据集标签为 AI 辅助、来源核对的草稿，待独立人工复核。
+            </p>
+          </form>
+          <div class="evaluation-layout">
+            <section class="panel history-panel">
+              <div class="panel-heading">
+                <h2>
+                  运行历史
+                </h2>
+                <button class="text-button" id="refresh-runs">
+                  刷新
+                </button>
+              </div>
+              <p class="small-note">
+                勾选至多两次运行，比较实际指标。
+              </p>
+              <div id="run-history" class="run-history">
+                <div class="empty-state">
+                  <p>
+                    正在加载运行记录
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="panel comparison-panel">
+              <div class="panel-heading">
+                <h2>
+                  指标对比
+                </h2>
+                <span class="small-note">
+                  当前账号可见运行
+                </span>
+              </div>
+              <div id="comparison" class="comparison-content">
+                <div class="empty-state">
+                  <span class="empty-symbol">
+                    ▥
+                  </span>
+                  <h3>
+                    用数据看见差异
+                  </h3>
+                  <p>
+                    运行一次评测，或在左侧选择已有记录。
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <section id="case-panel" class="panel hidden">
+            <div class="panel-heading">
+              <h2 id="case-title">
+                逐题结果
+              </h2>
+              <a id="download-evaluation" class="button small secondary" href="#">
+                下载 JSON
+              </a>
+            </div>
+            <div class="table-scroll">
+              <table class="case-table">
+                <thead>
+                  <tr>
+                    <th>
+                      问题
+                    </th>
+                    <th>
+                      预期文档
+                    </th>
+                    <th>
+                      命中排名
+                    </th>
+                    <th>
+                      拒答
+                    </th>
+                    <th>
+                      延迟
+                    </th>
+                    <th>
+                      结果
+                    </th>
+                  </tr>
+                </thead>
+                <tbody id="case-list">
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+        <footer>
+          KnowTrace
+          <span>
+            ·
+          </span>
+          文档证据检索工作台
+          <span>
+            ·
+          </span>
+          每条来源，均可回溯
+        </footer>
+      </main>
+    </div>
+    <dialog id="login-dialog" class="login-dialog">
+      <form id="login-form">
+        <div class="eyebrow">
+          WELCOME TO KNOWTRACE
+        </div>
+        <h2>
+          选择一个演示身份
+        </h2>
+        <p>
+          体验不同知识库权限下的检索结果。
+        </p>
+        <label for="demo-account">
+          演示账号
+        </label>
+        <select id="demo-account">
+          <option value="admin">
+            管理员 · 全部知识库
+          </option>
+          <option value="engineer">
+            工程成员 · 工程知识库
+          </option>
+          <option value="support">
+            支持成员 · 支持知识库
+          </option>
+        </select>
+        <label for="login-username">
+          用户名
+        </label>
+        <input id="login-username" autocomplete="username" required value="admin">
+        <label for="login-password">
+          密码
+        </label>
+        <input type="password" id="login-password" autocomplete="current-password" required value="admin-demo">
+        <div class="alert hidden" id="login-error" role="alert">
+        </div>
+        <button class="button primary" type="submit" id="login-button">
+          进入工作空间
+          <span>
+            →
+          </span>
+        </button>
+        <p class="small-note">
+          演示账号用于本地体验，尚未接入生产身份系统。
+        </p>
+      </form>
+    </dialog>
+    <dialog id="kb-dialog" class="small-dialog">
+      <form id="kb-form">
+        <div class="dialog-heading">
+          <h2>
+            新建知识库
+          </h2>
+          <button class="icon-button" type="button" id="close-kb" aria-label="关闭">
+            ×
+          </button>
+        </div>
+        <label for="kb-name">
+          知识库名称
+        </label>
+        <input id="kb-name" maxlength="100" required placeholder="例如：项目设计文档">
+        <label for="kb-description">
+          说明
+        </label>
+        <textarea id="kb-description" rows="3" maxlength="500" placeholder="这些资料涵盖什么内容？">
+        </textarea>
+        <div id="kb-error" class="alert hidden" role="alert">
+        </div>
+        <button class="button primary" id="create-kb-button" type="submit">
+          创建知识库
+        </button>
+      </form>
+    </dialog>
+    <dialog id="source-drawer" class="source-drawer">
+      <div class="drawer-top">
+        <span class="eyebrow">
+          BACK TO THE SOURCE
+        </span>
+        <button type="button" id="close-source" class="icon-button" aria-label="关闭来源">
+          ×
+        </button>
+      </div>
+      <h2 id="source-title">
+        证据来源
+      </h2>
+    <p id="source-kind" class="answer-provenance candidate-warning hidden"></p>
+      <p id="source-location" class="small-note">
+      </p>
+      <div id="source-excerpt" class="evidence-quote">
+      </div>
+      <div class="source-links">
+        <a id="source-download" class="button secondary" href="#" target="_blank" rel="noopener">
+          打开原文件 ↗
+        </a>
+        <a id="source-original" class="text-button hidden" href="#" target="_blank" rel="noopener noreferrer">
+          公开原文 ↗
+        </a>
+      </div>
+      <h3 class="drawer-section-title">
+        同页 / 文档片段
+      </h3>
+      <div id="source-chunks" class="drawer-chunks">
+      </div>
+    </dialog>
+    <div id="toast" class="toast hidden" role="status">
+    </div>
+  </body>
+</html>

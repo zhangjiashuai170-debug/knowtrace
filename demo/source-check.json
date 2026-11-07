@@ -1,0 +1,19 @@
+{
+  "documents": 20,
+  "all_document_hashes_verified": true,
+  "license_hash_verified": true,
+  "pinned_commit": "8e3db5153ec314d6e7775cd0ea39a46e95bfddb0",
+  "cases": 100,
+  "answerable": 80,
+  "unanswerable": 20,
+  "dev": 50,
+  "test": 50,
+  "all_answerable_evidence_verified": true,
+  "label_status": "AI-assisted source-checked draft; independent human review pending",
+  "checked_at": "2026-11-07T12:15:57.912408+00:00",
+  "manifest_sha256": "ef6edf36e14b7a0a1bcd45bab6e5a369f7df0a3849ed6b7088fbf0d175c3b9a3",
+  "evaluation_sha256": "254fbd84a2c865d6f0d689b99801ddd43fa0423b6c557a204d157bc7c87a9e13",
+  "source_commit_verified_via": "GitHub connector: fastapi/fastapi commits endpoint; release 0.162.1",
+  "independent_human_review_completed": false,
+  "scope": "Corpus provenance, byte integrity, dataset structure and evidence presence only; no retrieval performance measured."
+}

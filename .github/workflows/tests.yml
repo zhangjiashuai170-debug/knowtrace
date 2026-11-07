@@ -1,0 +1,64 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Python 3.12 (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: .venv/bin/python
+          - os: windows-latest
+            python: .venv/Scripts/python.exe
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONUTF8: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      KNOWTRACE_MODEL_PROVIDER: disabled
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Create project environment
+        # Windows launcher tests verify the project's .venv/Scripts/python.exe.
+        run: python -m venv .venv
+
+      - name: Install application and test dependencies
+        # Semantic tests use NumPy with fake tokenizer/inference fixtures.
+        # Installing the extras does not download any model weights.
+        run: ${{ matrix.python }} -m pip install -e ".[dev,semantic]"
+
+      - name: Check dependency compatibility
+        run: ${{ matrix.python }} -m pip check
+
+      - name: Run tests
+        # Provider calls use MockTransport; Windows process operations use fakes.
+        run: ${{ matrix.python }} -m pytest

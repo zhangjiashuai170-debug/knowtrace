@@ -1,0 +1,404 @@
+{
+  "app_version": "0.3.0",
+  "embedding": {
+    "implementation": "e5-onnx-maskedmean-v2",
+    "model_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "files": {
+      "model_qint8_avx512_vnni.onnx": {
+        "size": 118346824,
+        "sha256": "dd476dd0c2514e9b9be83aeb3853fac0763e0bdf4a71645407587d77c48a2d88"
+      },
+      "tokenizer.json": {
+        "size": 17082730,
+        "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"
+      }
+    },
+    "dimension": 384,
+    "max_tokens": 512,
+    "query_prefix": "query: ",
+    "document_prefix": "passage: ",
+    "padding": "right; tokenizer <pad> ID; attention mask",
+    "pooling": "attention_mask_mean",
+    "normalization": "l2_float32",
+    "batch_size": 1,
+    "batch_policy": "one_text_per_inference_for_corpus_independence",
+    "fingerprint": "f7242eb613345c20dd27f2fbd7ae6c311e2537549123ca178109beb46a95741a",
+    "local_only": true,
+    "runtime": "onnxruntime",
+    "runtime_version": "1.31.1",
+    "tokenizers_version": "0.23.3",
+    "numpy_version": "2.5.4",
+    "provider": "CPUExecutionProvider",
+    "intra_op_threads": 4
+  },
+  "splits": {
+    "dev": {
+      "bm25": {
+        "metrics": {
+          "recall_at_1": 0.75,
+          "recall_at_3": 0.85,
+          "recall_at_5": 0.875,
+          "mrr": 0.8063,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.275,
+          "expected_source_use_rate": 0.55,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 12.104,
+          "p95_ms": 13.032,
+          "search_p50_ms": 12.201,
+          "search_p95_ms": 13.685
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "dev\\7a1526ba0c7847beb032142bddf2db05.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "tfidf": {
+        "metrics": {
+          "recall_at_1": 0.725,
+          "recall_at_3": 0.85,
+          "recall_at_5": 0.9,
+          "mrr": 0.7987,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.425,
+          "expected_source_use_rate": 0.5,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 12.204,
+          "p95_ms": 16.837,
+          "search_p50_ms": 12.181,
+          "search_p95_ms": 16.415
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "dev\\7d38dbbf89414ad298f9c24afab03276.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "hybrid": {
+        "metrics": {
+          "recall_at_1": 0.825,
+          "recall_at_3": 0.875,
+          "recall_at_5": 0.95,
+          "mrr": 0.8675,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.325,
+          "expected_source_use_rate": 0.55,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 12.113,
+          "p95_ms": 13.016,
+          "search_p50_ms": 11.96,
+          "search_p95_ms": 13.253
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "dev\\1aa0eb45a1004c309301bf01a1e5314c.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "semantic": {
+        "metrics": {
+          "recall_at_1": 0.725,
+          "recall_at_3": 0.875,
+          "recall_at_5": 0.925,
+          "mrr": 0.81,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.4,
+          "expected_source_use_rate": 0.5,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 21.721,
+          "p95_ms": 27.146,
+          "search_p50_ms": 21.774,
+          "search_p95_ms": 28.02
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "dev\\9c11d9f29e914055be148757d6230de4.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "semantic_hybrid": {
+        "metrics": {
+          "recall_at_1": 0.85,
+          "recall_at_3": 0.95,
+          "recall_at_5": 0.95,
+          "mrr": 0.8958,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.4,
+          "expected_source_use_rate": 0.525,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 16.428,
+          "p95_ms": 20.56,
+          "search_p50_ms": 16.457,
+          "search_p95_ms": 19.716
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "dev\\9c41cf66d3b74262a59615da0908af01.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      }
+    },
+    "test": {
+      "bm25": {
+        "metrics": {
+          "recall_at_1": 0.825,
+          "recall_at_3": 0.95,
+          "recall_at_5": 0.975,
+          "mrr": 0.8842,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.375,
+          "expected_source_use_rate": 0.6,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 6.205,
+          "p95_ms": 8.521,
+          "search_p50_ms": 6.24,
+          "search_p95_ms": 8.178
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "test\\4e6a812f0333438fa547729b781f3915.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "tfidf": {
+        "metrics": {
+          "recall_at_1": 0.725,
+          "recall_at_3": 0.975,
+          "recall_at_5": 0.975,
+          "mrr": 0.8417,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.4,
+          "expected_source_use_rate": 0.575,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 6.335,
+          "p95_ms": 8.116,
+          "search_p50_ms": 6.242,
+          "search_p95_ms": 8.062
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "test\\ac4d630f90f04e0ea0497263e5d1ab4b.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "hybrid": {
+        "metrics": {
+          "recall_at_1": 0.875,
+          "recall_at_3": 0.95,
+          "recall_at_5": 1.0,
+          "mrr": 0.925,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.375,
+          "expected_source_use_rate": 0.6,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 6.406,
+          "p95_ms": 8.84,
+          "search_p50_ms": 6.451,
+          "search_p95_ms": 7.695
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "test\\b62102cd96c846329708a5e11068f96f.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "semantic": {
+        "metrics": {
+          "recall_at_1": 0.775,
+          "recall_at_3": 0.875,
+          "recall_at_5": 0.95,
+          "mrr": 0.8342,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.45,
+          "expected_source_use_rate": 0.525,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 17.79,
+          "p95_ms": 21.242,
+          "search_p50_ms": 16.976,
+          "search_p95_ms": 21.363
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "test\\97b7e11b1bcb412082efd5a58ab7eb98.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      },
+      "semantic_hybrid": {
+        "metrics": {
+          "recall_at_1": 0.875,
+          "recall_at_3": 0.975,
+          "recall_at_5": 1.0,
+          "mrr": 0.9258,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.375,
+          "expected_source_use_rate": 0.6,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 17.768,
+          "p95_ms": 20.689,
+          "search_p50_ms": 16.943,
+          "search_p95_ms": 21.017
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "report": "test\\77374a0f073540ccbe16bead37567c44.json",
+        "code_sha256": {
+          "core.py": "27843e29d8f1fbbe077def65b5725938f473f92384068c69373d20efc6ce77b5",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "ae813162501924483e6aae961c80c256866e1503e738855b6ecacd1b1879b32f",
+          "evaluation.py": "4664f6290c80b49fd7c284a604cd992998f19850523ba3f414ee6540f6313978",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef",
+          "embeddings.py": "9604d939feb21abe7c5978795f83f7aa04d879f58128b2d37e971ca84bee5ebf"
+        }
+      }
+    }
+  },
+  "generated_api_calls": 0,
+  "default_changed": false,
+  "note": "Fixed k=60 RRF; no parameter tuning on results. Existing test split was already inspected: regression comparison, not untouched holdout. Dense similarity ranks candidates; lexical evidence admission is unchanged. Latencies are sequential on this machine; no throughput claim."
+}

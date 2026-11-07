@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    "Demo login, scoped corpus, actual evidence answer and source-line drawer",
+    "Actual upload/delete, refreshed counts, literal untrusted document text",
+    "Actual test-split evaluation, 50 case rows, downloadable matching JSON",
+    "Account switch suppresses delayed prior-scope answer and sources",
+    "390px mobile layout has no horizontal page overflow"
+  ],
+  "errors": [],
+  "browser": "isolated headless Microsoft Edge",
+  "runtime_network": "only local test server allowed"
+}

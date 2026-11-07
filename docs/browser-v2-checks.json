@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "version": "0.2",
+  "checks": [
+    "Actual authenticated model status is unconfigured; extractive default and generated option disabled",
+    "Accepted evidence uses actual <=3 quoted sources with API-matching citation IDs and source-line drawer",
+    "Real refusal has no supporting sources; retained candidates have no S citation and stay marked unverified in drawer",
+    "Search-only mode returns real candidates without invented answer sources or citation labels",
+    "Actual upload, literal unsafe-looking document content, deletion and restored counts",
+    "Actual offline test-split evaluation, per-case UI rows and matching downloaded report",
+    "Actual earlier-scope response is delayed, then ignored after account switch; model mode resets",
+    "390px answer/retrieval selectors, two-row actions, evaluation settings and no page overflow"
+  ],
+  "errors": [],
+  "browser": "isolated headless Microsoft Edge",
+  "runtime_network": "local test origin only",
+  "generated_provider": "not exercised; provider request behavior is covered by mock API tests"
+}

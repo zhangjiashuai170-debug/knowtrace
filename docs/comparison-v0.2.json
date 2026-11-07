@@ -1,0 +1,373 @@
+{
+  "status": "frozen-regression-comparison",
+  "limits": [
+    "Already inspected regression split, not unseen holdout",
+    "AI-assisted labels, independent human review pending",
+    "Source retrieval/use does not verify semantic answer correctness",
+    "v0.1 sources included unquoted candidates; source-use rate has no comparable v0.1 baseline",
+    "Local warm sequential timing, not throughput"
+  ],
+  "development": {
+    "methodology": {
+      "scope": "dev only; test is reserved for parent one-time regression after freeze, not unseen holdout",
+      "dev_count": 50,
+      "baseline_rule": "IDF-weighted token coverage >=0.22 and (BM25>0 or character TF-IDF>=0.12)",
+      "dataset_sha256": "254fbd84a2c865d6f0d689b99801ddd43fa0423b6c557a204d157bc7c87a9e13",
+      "tuning_budget": 3,
+      "no_synonym_allowlist": true,
+      "offline_only": true
+    },
+    "baseline": {
+      "bm25": {
+        "recall_at_1": 0.75,
+        "recall_at_3": 0.875,
+        "recall_at_5": 0.875,
+        "mrr": 0.8125,
+        "refusal_accuracy": 1.0,
+        "false_refusal_rate": 0.65,
+        "p50_ms": 6.037,
+        "p95_ms": 7.032
+      },
+      "tfidf": {
+        "recall_at_1": 0.725,
+        "recall_at_3": 0.85,
+        "recall_at_5": 0.9,
+        "mrr": 0.7987,
+        "refusal_accuracy": 1.0,
+        "false_refusal_rate": 0.65,
+        "p50_ms": 5.905,
+        "p95_ms": 6.913
+      },
+      "hybrid": {
+        "recall_at_1": 0.8,
+        "recall_at_3": 0.875,
+        "recall_at_5": 0.875,
+        "mrr": 0.8333,
+        "refusal_accuracy": 1.0,
+        "false_refusal_rate": 0.65,
+        "p50_ms": 6.277,
+        "p95_ms": 7.108
+      }
+    },
+    "experiments": [
+      {
+        "round": 1,
+        "changes": [
+          "Chinese dictionary word segmentation with offline jieba HMM disabled replaces crossing bigrams",
+          "Generic function-word removal, conservative English inflection/identifier normalization",
+          "Keep original 0.22 IDF coverage gate for isolation; separate candidates from actually quoted sources"
+        ],
+        "rationale": "Unknown crossing Chinese bigrams and query scaffolding were incorrectly treated as factual requirements. Numeric/negation/factual unknowns remain tokens; no evaluation-specific synonyms.",
+        "metrics": {
+          "bm25": {
+            "recall_at_1": 0.75,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.875,
+            "mrr": 0.8021,
+            "refusal_accuracy": 0.9,
+            "false_refusal_rate": 0.075,
+            "expected_source_use_rate": 0.775,
+            "unsupported_acceptance_rate": 0.1,
+            "p50_ms": 5.806,
+            "p95_ms": 6.891
+          },
+          "tfidf": {
+            "recall_at_1": 0.725,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.9,
+            "mrr": 0.7987,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.175,
+            "expected_source_use_rate": 0.75,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 6.374,
+            "p95_ms": 8.106
+          },
+          "hybrid": {
+            "recall_at_1": 0.8,
+            "recall_at_3": 0.875,
+            "recall_at_5": 0.925,
+            "mrr": 0.8488,
+            "refusal_accuracy": 0.9,
+            "false_refusal_rate": 0.125,
+            "expected_source_use_rate": 0.775,
+            "unsupported_acceptance_rate": 0.1,
+            "p50_ms": 6.232,
+            "p95_ms": 7.412
+          }
+        }
+      },
+      {
+        "round": 2,
+        "changes": [
+          "Raise content-word IDF coverage from legacy 0.22 to 0.35 after word segmentation",
+          "Reject absent explicit numeric/date constraints and unknown out-of-corpus technical identifiers",
+          "For numeric questions require an actual numeric value with relevant units and requested min/max/default qualifiers"
+        ],
+        "rationale": "Independent synthetic cases exposed false acceptance of a wrong release date, an unknown auth identifier, and an unspecified numeric upload limit. These generic constraints are not question-specific synonym lists; thresholds were raised, not relaxed.",
+        "metrics": {
+          "bm25": {
+            "recall_at_1": 0.75,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.875,
+            "mrr": 0.8021,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.375,
+            "expected_source_use_rate": 0.525,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 6.479,
+            "p95_ms": 8.551
+          },
+          "tfidf": {
+            "recall_at_1": 0.725,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.9,
+            "mrr": 0.7987,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.525,
+            "expected_source_use_rate": 0.475,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 6.633,
+            "p95_ms": 8.334
+          },
+          "hybrid": {
+            "recall_at_1": 0.8,
+            "recall_at_3": 0.875,
+            "recall_at_5": 0.925,
+            "mrr": 0.8488,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.425,
+            "expected_source_use_rate": 0.525,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 6.888,
+            "p95_ms": 9.342
+          }
+        },
+        "independent_regressions": {
+          "passed": 10,
+          "total": 10
+        }
+      },
+      {
+        "round": 3,
+        "changes": [
+          "Keep IDF content coverage >=0.35 unchanged",
+          "Preserve explicit negation and reject candidates missing negative wording",
+          "Treat broad qualitative size questions separately from exact numeric limits",
+          "Remove remaining closed-class interrogatives/copula tokens"
+        ],
+        "rationale": "Independent counterexamples exposed a positive statement accepted for a not-question, and small-files evidence wrongly rejected because qualitative size was forced into a numeric answer. No domain synonym list or dev/test answer tokens were added.",
+        "metrics": {
+          "bm25": {
+            "recall_at_1": 0.75,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.875,
+            "mrr": 0.8063,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.275,
+            "expected_source_use_rate": 0.55,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 12.232,
+            "p95_ms": 60.833
+          },
+          "tfidf": {
+            "recall_at_1": 0.725,
+            "recall_at_3": 0.85,
+            "recall_at_5": 0.9,
+            "mrr": 0.7987,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.425,
+            "expected_source_use_rate": 0.5,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 11.395,
+            "p95_ms": 50.812
+          },
+          "hybrid": {
+            "recall_at_1": 0.825,
+            "recall_at_3": 0.875,
+            "recall_at_5": 0.95,
+            "mrr": 0.8675,
+            "refusal_accuracy": 1.0,
+            "false_refusal_rate": 0.325,
+            "expected_source_use_rate": 0.55,
+            "unsupported_acceptance_rate": 0.0,
+            "p50_ms": 11.317,
+            "p95_ms": 34.341
+          }
+        },
+        "independent_regressions": {
+          "passed": 12,
+          "total": 12
+        }
+      }
+    ],
+    "final": {
+      "selected_round": 3,
+      "policy_version": "lexical-v2",
+      "minimum_coverage": 0.35,
+      "ranker": "permission-scoped BM25 + character TF-IDF RRF",
+      "dependency": "jieba==0.42.1, bundled offline dictionary, HMM=False",
+      "source_policy": "Only up to three individually qualified excerpts receive citation IDs. All retrieved chunks remain non-supporting retrieval_candidates.",
+      "baseline_metric_caveat": "expected_source_use_rate and unsupported_acceptance_rate were introduced by evaluator after baseline; not retroactively estimated. Baseline sources previously included unquoted candidates; its source-use metric is not comparable.",
+      "limits": [
+        "Lexical gating is not semantic entailment or factual correctness verification.",
+        "Negation guard checks presence of negative wording, not its grammatical scope.",
+        "Dates/numbers and technical identifiers are lexical constraints; equivalent formats or unseen paraphrases can still be refused.",
+        "Qualitative excerpts cannot establish an unspecified exact numeric limit.",
+        "Development labels are AI-assisted source-checked drafts; no claim of independently validated benchmark.",
+        "Parent alone will run test once after freeze; that is regression, not unseen holdout."
+      ],
+      "source_sha256": {
+        "knowtrace/retrieval.py": "08d497275bdf40ba555ecbadfeb3a8d5d4ea1c4b59dc7957001fffbeaa730909",
+        "knowtrace/core.py": "3d6fd35e44ef395194090714d785b1b9de3002a676fc13892318b091258d842a"
+      },
+      "frozen": true
+    }
+  },
+  "modes": {
+    "tfidf": {
+      "before": {
+        "run_id": "7a163eeec96b4144be499da3f76c7105",
+        "metrics": {
+          "recall_at_1": 0.725,
+          "recall_at_3": 0.975,
+          "recall_at_5": 0.975,
+          "mrr": 0.8417,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.6,
+          "p50_ms": 14.078,
+          "p95_ms": 20.041
+        }
+      },
+      "after": {
+        "run_id": "eb182b45a2b84f438b311e8deb68ffbd",
+        "metrics": {
+          "recall_at_1": 0.725,
+          "recall_at_3": 0.975,
+          "recall_at_5": 0.975,
+          "mrr": 0.8417,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.4,
+          "expected_source_use_rate": 0.575,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 17.693,
+          "p95_ms": 30.533
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "code_sha256": {
+          "core.py": "3d6fd35e44ef395194090714d785b1b9de3002a676fc13892318b091258d842a",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "08d497275bdf40ba555ecbadfeb3a8d5d4ea1c4b59dc7957001fffbeaa730909",
+          "evaluation.py": "dff1cecca078b1a7737381189d44820544a13caa32ec2354752daea818ef3c8f",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef"
+        }
+      }
+    },
+    "bm25": {
+      "before": {
+        "run_id": "86248e2f15774f86a17a216379dc6810",
+        "metrics": {
+          "recall_at_1": 0.9,
+          "recall_at_3": 0.95,
+          "recall_at_5": 0.975,
+          "mrr": 0.9229,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.575,
+          "p50_ms": 13.918,
+          "p95_ms": 17.927
+        }
+      },
+      "after": {
+        "run_id": "5f8430db1c5c449c8756ed5b61db5f41",
+        "metrics": {
+          "recall_at_1": 0.825,
+          "recall_at_3": 0.95,
+          "recall_at_5": 0.975,
+          "mrr": 0.8842,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.375,
+          "expected_source_use_rate": 0.6,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 17.402,
+          "p95_ms": 37.956
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "code_sha256": {
+          "core.py": "3d6fd35e44ef395194090714d785b1b9de3002a676fc13892318b091258d842a",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "08d497275bdf40ba555ecbadfeb3a8d5d4ea1c4b59dc7957001fffbeaa730909",
+          "evaluation.py": "dff1cecca078b1a7737381189d44820544a13caa32ec2354752daea818ef3c8f",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef"
+        }
+      }
+    },
+    "hybrid": {
+      "before": {
+        "run_id": "df492e9760894a6a96a91e0a847efa8e",
+        "metrics": {
+          "recall_at_1": 0.85,
+          "recall_at_3": 0.95,
+          "recall_at_5": 0.975,
+          "mrr": 0.9062,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.575,
+          "p50_ms": 13.863,
+          "p95_ms": 18.937
+        }
+      },
+      "after": {
+        "run_id": "6cfbcf09a83142c18acee5a7a931d8b1",
+        "metrics": {
+          "recall_at_1": 0.875,
+          "recall_at_3": 0.95,
+          "recall_at_5": 1.0,
+          "mrr": 0.925,
+          "refusal_accuracy": 1.0,
+          "false_refusal_rate": 0.375,
+          "expected_source_use_rate": 0.6,
+          "unsupported_acceptance_rate": 0.0,
+          "p50_ms": 17.122,
+          "p95_ms": 20.303
+        },
+        "scope": {
+          "allowed_kb_ids": [
+            "kb-engineering"
+          ],
+          "case_count": 50,
+          "answerable": 40,
+          "unanswerable": 10,
+          "document_count": 20,
+          "chunk_count": 230,
+          "index_sha256": "e878c9fe2c0a48bc25a3d84912e8cb5e33408e00a16dc6c983eb709ca306430b"
+        },
+        "code_sha256": {
+          "core.py": "3d6fd35e44ef395194090714d785b1b9de3002a676fc13892318b091258d842a",
+          "parsing.py": "d7297f14cab67dc7cd443f6c77e4822ee73cb805a26c34f06f2197723d43b875",
+          "retrieval.py": "08d497275bdf40ba555ecbadfeb3a8d5d4ea1c4b59dc7957001fffbeaa730909",
+          "evaluation.py": "dff1cecca078b1a7737381189d44820544a13caa32ec2354752daea818ef3c8f",
+          "integrity.py": "1cdabd354f1281cd6c8d44a0812e7846a61a1eef7baced5a94679915e8e774ef"
+        }
+      }
+    }
+  }
+}

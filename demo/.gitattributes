@@ -1,0 +1,3 @@
+# Preserve upstream bytes so manifest SHA-256 remains valid on Windows checkout.
+documents/*.md -text
+LICENSE -text

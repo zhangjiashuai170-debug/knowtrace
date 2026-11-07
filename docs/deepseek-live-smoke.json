@@ -1,0 +1,89 @@
+{
+  "finished_at": "2026-11-07T13:46:20.951638+00:00",
+  "provider": "openai_compatible",
+  "model": "deepseek-flash",
+  "semantic_verified": false,
+  "scope": "isolated synthetic preflight; one supported model answer, one local refusal, one local access denial",
+  "live_check": {
+    "status": "protocol_checks_passed",
+    "model_inference_observed": true,
+    "provider_requests_forwarded": 1,
+    "private_case_provider_requests": 0,
+    "automatic_retries": 0,
+    "semantic_verified": false,
+    "cases": [
+      {
+        "id": "supported",
+        "http_status": 200,
+        "status": "response",
+        "answer": "KnowTraceProbe stores project snapshots for 14 days [S1]。",
+        "answer_redacted": false,
+        "refused": false,
+        "model_invoked": true,
+        "generation_status": null,
+        "actual_cited_ids": [
+          "S1"
+        ],
+        "actual_document_ids": [
+          "f2349fbe59c54e04b79258647c332880"
+        ],
+        "citation_syntactic_gate": {
+          "status": "passed",
+          "inline_ids": [
+            "S1"
+          ],
+          "source_citation_ids": [
+            "S1"
+          ],
+          "semantic_verified": false,
+          "scope": "JSON字段、正文引用ID与返回的授权合成文档ID一致性；不核验语义支持。"
+        },
+        "provider_requests_forwarded": 1,
+        "provider_request_outcome": "response_observed",
+        "latency_ms": 858.667
+      },
+      {
+        "id": "no_evidence",
+        "http_status": 200,
+        "status": "response",
+        "answer": "当前可访问资料中没有足够依据回答这个问题。可以换一种问法，或补充相关文档。",
+        "answer_redacted": false,
+        "refused": true,
+        "model_invoked": false,
+        "generation_status": "skipped_insufficient_evidence",
+        "actual_cited_ids": [],
+        "actual_document_ids": [],
+        "citation_syntactic_gate": {
+          "status": "not_run",
+          "semantic_verified": false
+        },
+        "provider_requests_forwarded": 0,
+        "provider_request_outcome": "not_forwarded",
+        "latency_ms": 10.357
+      },
+      {
+        "id": "unauthorized",
+        "http_status": 403,
+        "status": "permission_denied",
+        "answer": null,
+        "refused": null,
+        "model_invoked": false,
+        "actual_cited_ids": [],
+        "actual_document_ids": [],
+        "citation_syntactic_gate": {
+          "status": "not_run",
+          "semantic_verified": false
+        },
+        "provider_requests_forwarded": 0,
+        "provider_request_outcome": "not_forwarded",
+        "latency_ms": 6.213
+      }
+    ]
+  },
+  "single_answer_assistant_review": {
+    "expected_retention_days": 14,
+    "observed_answer_matches_this_fact": true,
+    "broad_semantic_evaluation": false,
+    "independent_human_review": false
+  }
+}

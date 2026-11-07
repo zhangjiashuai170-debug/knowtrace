@@ -1,0 +1,923 @@
+{
+  "id": "fastapi-zh-100",
+  "name": "FastAPI 中文文档 · 100题",
+  "description": "固定20篇官方中文教程上的100题演示集：80条可回答、20条语料范围内无答案；AI辅助编写并逐条核对来源与短引，尚未经独立人工复核，不是行业基准。",
+  "corpus_id": "fastapi-zh-tutorial-20",
+  "source_commit": "8e3db5153ec314d6e7775cd0ea39a46e95bfddb0",
+  "label_provenance": {
+    "creation_method": "AI-assisted drafting",
+    "source_check": "All 80 verbatim evidence spans checked against exact local upstream bytes; unsupported cases checked for corpus scope.",
+    "independent_human_review_completed": false,
+    "status": "source-checked draft",
+    "performance_results_included": false
+  },
+  "split_policy": "dev/test各50题，各40可回答+10无答案；每篇文档2条dev+2条test。按问题拆分，不是跨文档隔离，不能宣称对新文档的泛化成绩。",
+  "evaluation_limits": [
+    "Gold labels are for scoring only and must never be indexed or inserted into answers.",
+    "Each answerable question has one expected document; overlapping valid evidence in another tutorial is not fully annotated.",
+    "Unanswerable means unsupported by these 20 files, not impossible to answer from the whole web or full FastAPI docs.",
+    "Questions, evidence selection and unanswerable labels require independent human review before benchmark claims."
+  ],
+  "cases": [
+    {
+      "id": "A001",
+      "question": "FastAPI 用哪一种标准把接口定义转换为可供工具读取的模式？",
+      "expected_document": "first-steps.md",
+      "expected_evidence": "**FastAPI** 使用定义 API 的 **OpenAPI** 标准将你的所有 API 转换成「模式」。",
+      "answerable": true,
+      "split": "dev",
+      "category": "接口模式"
+    },
+    {
+      "id": "A002",
+      "question": "本地服务已经启动，想直接检查生成的 OpenAPI JSON，应访问哪个地址？",
+      "expected_document": "first-steps.md",
+      "expected_evidence": "http://127.0.0.1:8000/openapi.json",
+      "answerable": true,
+      "split": "dev",
+      "category": "接口模式"
+    },
+    {
+      "id": "A003",
+      "question": "应用文件不在当前默认位置时，开发启动命令能否接收文件路径？",
+      "expected_document": "first-steps.md",
+      "expected_evidence": "你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：",
+      "answerable": true,
+      "split": "test",
+      "category": "开发启动"
+    },
+    {
+      "id": "A004",
+      "question": "FastAPI 这个类直接继承了哪个底层框架的类？",
+      "expected_document": "first-steps.md",
+      "expected_evidence": "`FastAPI` 是直接从 `Starlette` 继承的类。",
+      "answerable": true,
+      "split": "test",
+      "category": "框架关系"
+    },
+    {
+      "id": "A005",
+      "question": "路由里要放一个变量，声明它的写法与 Python 中哪种字符串语法相同？",
+      "expected_document": "path-params.md",
+      "expected_evidence": "你可以使用与 Python 字符串格式化相同的语法声明路径“参数”或“变量”：",
+      "answerable": true,
+      "split": "dev",
+      "category": "路径参数"
+    },
+    {
+      "id": "A006",
+      "question": "路径参数的类型校验是否需要另写一套校验规则？",
+      "expected_document": "path-params.md",
+      "expected_evidence": "**FastAPI** 使用同样的 Python 类型声明实现了数据校验。",
+      "answerable": true,
+      "split": "dev",
+      "category": "类型校验"
+    },
+    {
+      "id": "A007",
+      "question": "预定义枚举额外继承 str，对自动生成的接口文档有什么帮助？",
+      "expected_document": "path-params.md",
+      "expected_evidence": "通过从 `str` 继承，API 文档就能把值的类型定义为**字符串**，并且能正确渲染。",
+      "answerable": true,
+      "split": "test",
+      "category": "枚举参数"
+    },
+    {
+      "id": "A008",
+      "question": "文件路径参数需要匹配带斜杠的完整路径，转换器后缀该如何写？",
+      "expected_document": "path-params.md",
+      "expected_evidence": "结尾部分的 `:path` 说明该参数应匹配任意*路径*。",
+      "answerable": true,
+      "split": "test",
+      "category": "路径转换器"
+    },
+    {
+      "id": "A009",
+      "question": "函数参数没有出现在路由路径中时，框架会把它当作哪一类参数？",
+      "expected_document": "query-params.md",
+      "expected_evidence": "声明的参数不是路径参数时，路径操作函数会把该参数自动解释为“查询”参数。",
+      "answerable": true,
+      "split": "dev",
+      "category": "查询参数"
+    },
+    {
+      "id": "A010",
+      "question": "URL 中的值原本是文本，参数标注为 int 后会如何处理？",
+      "expected_document": "query-params.md",
+      "expected_evidence": "但声明 Python 类型（上例中为 `int`）之后，这些值就会转换为声明的类型，并进行类型校验。",
+      "answerable": true,
+      "split": "dev",
+      "category": "类型转换"
+    },
+    {
+      "id": "A011",
+      "question": "希望客户端可以不传某个查询参数，默认值可以怎样设置？",
+      "expected_document": "query-params.md",
+      "expected_evidence": "同理，把默认值设为 `None` 即可声明可选的查询参数：",
+      "answerable": true,
+      "split": "test",
+      "category": "可选参数"
+    },
+    {
+      "id": "A012",
+      "question": "布尔查询参数 short 收到空字符串或者 maybe，会得到什么校验结果？",
+      "expected_document": "query-params.md",
+      "expected_evidence": "空值（`?short=`）或无法识别的值（例如 `?short=maybe`）会导致 `422` 校验错误。",
+      "answerable": true,
+      "split": "test",
+      "category": "布尔参数"
+    },
+    {
+      "id": "A013",
+      "question": "浏览器给接口提交一组数据时，教程把承载这些数据的部分称为什么？",
+      "expected_document": "body.md",
+      "expected_evidence": "当你需要从客户端（比如浏览器）向你的 API 发送数据时，会把它作为**请求体**发送。",
+      "answerable": true,
+      "split": "dev",
+      "category": "请求体"
+    },
+    {
+      "id": "A014",
+      "question": "GET 请求携带请求体是通常推荐的做法吗，教程怎样限定这种用法？",
+      "expected_document": "body.md",
+      "expected_evidence": "规范中没有定义用 `GET` 请求发送请求体的行为，但 FastAPI 仍支持这种方式，只用于非常复杂/极端的用例。",
+      "answerable": true,
+      "split": "dev",
+      "category": "HTTP边界"
+    },
+    {
+      "id": "A015",
+      "question": "同一个处理函数中，路由变量和 Pydantic 模型分别从哪里取值？",
+      "expected_document": "body.md",
+      "expected_evidence": "**FastAPI** 能识别与**路径参数**匹配的函数参数应该**从路径中获取**，而声明为 Pydantic 模型的函数参数应该**从请求体中获取**。",
+      "answerable": true,
+      "split": "test",
+      "category": "参数来源"
+    },
+    {
+      "id": "A016",
+      "question": "没有额外声明时，str 或 bool 这样的单一类型参数会被视为什么？",
+      "expected_document": "body.md",
+      "expected_evidence": "如果该参数是（`int`、`float`、`str`、`bool` 等）**单一类型**，它会被当作**查询**参数。",
+      "answerable": true,
+      "split": "test",
+      "category": "参数来源"
+    },
+    {
+      "id": "A017",
+      "question": "给查询参数增加校验时，教程更推荐 Annotated，还是把 Query 放在默认值里？",
+      "expected_document": "query-params-str-validations.md",
+      "expected_evidence": "**推荐使用 `Annotated`**，而不是把 `Query` 放在函数参数的默认值里",
+      "answerable": true,
+      "split": "dev",
+      "category": "声明方式"
+    },
+    {
+      "id": "A018",
+      "question": "查询参数只标成 list、不写元素类型，还会验证列表元素必须是整数吗？",
+      "expected_document": "query-params-str-validations.md",
+      "expected_evidence": "例如，`list[int]` 会检查（并记录到文档）列表的内容必须是整数。但仅用 `list` 不会。",
+      "answerable": true,
+      "split": "dev",
+      "category": "列表校验"
+    },
+    {
+      "id": "A019",
+      "question": "Python 变量名不能带连字符，但 URL 参数需要叫 item-query，可以用什么解决？",
+      "expected_document": "query-params-str-validations.md",
+      "expected_evidence": "这时可以用 `alias` 参数声明一个别名，FastAPI 会用该别名在 URL 中查找参数值：",
+      "answerable": true,
+      "split": "test",
+      "category": "参数别名"
+    },
+    {
+      "id": "A020",
+      "question": "旧查询参数还要兼容现有客户端，如何让文档提示它已经弃用？",
+      "expected_document": "query-params-str-validations.md",
+      "expected_evidence": "那么将参数 `deprecated=True` 传给 `Query`：",
+      "answerable": true,
+      "split": "test",
+      "category": "弃用标记"
+    },
+    {
+      "id": "A021",
+      "question": "路径参数也想附带与 Query 类似的校验和说明，应使用哪个声明工具？",
+      "expected_document": "path-params-numeric-validations.md",
+      "expected_evidence": "你也可以使用 `Path` 为路径参数声明相同类型的校验和元数据。",
+      "answerable": true,
+      "split": "dev",
+      "category": "数值约束"
+    },
+    {
+      "id": "A022",
+      "question": "整数路径参数使用 ge=1 时，数字 1 本身是否有效？",
+      "expected_document": "path-params-numeric-validations.md",
+      "expected_evidence": "使用 `ge=1` 后，`item_id` 必须是一个整数，值要大于等于（`g`reater than or `e`qual）`1`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "包含边界"
+    },
+    {
+      "id": "A023",
+      "question": "数值约束里的 gt 表示大于，还是大于等于？",
+      "expected_document": "path-params-numeric-validations.md",
+      "expected_evidence": "`gt`：大于（`g`reater `t`han）",
+      "answerable": true,
+      "split": "test",
+      "category": "排除边界"
+    },
+    {
+      "id": "A024",
+      "question": "Query 和 Path 的数值范围校验只适用于整数吗？",
+      "expected_document": "path-params-numeric-validations.md",
+      "expected_evidence": "数值校验同样适用于 `float` 值。",
+      "answerable": true,
+      "split": "test",
+      "category": "浮点约束"
+    },
+    {
+      "id": "A025",
+      "question": "请求体中的 item 模型默认值设为 None，会成为必传项吗？",
+      "expected_document": "body-multiple-params.md",
+      "expected_evidence": "将从请求体获取的 `item` 是可选的。因为它的默认值为 `None`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "可选请求体"
+    },
+    {
+      "id": "A026",
+      "question": "一个请求只有一份请求体，处理函数还能同时声明多个请求体参数吗？",
+      "expected_document": "body-multiple-params.md",
+      "expected_evidence": "你可以添加多个请求体参数到*路径操作函数*中，即使一个请求只能有一个请求体。",
+      "answerable": true,
+      "split": "dev",
+      "category": "多个请求体参数"
+    },
+    {
+      "id": "A027",
+      "question": "importance 是单个数值，但希望它出现在 JSON 请求体而非查询串，需要什么声明？",
+      "expected_document": "body-multiple-params.md",
+      "expected_evidence": "但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。",
+      "answerable": true,
+      "split": "test",
+      "category": "单值请求体"
+    },
+    {
+      "id": "A028",
+      "question": "只有一个 item 模型，却想让 JSON 外面再包一层 item 键，Body 有什么参数可用？",
+      "expected_document": "body-multiple-params.md",
+      "expected_evidence": "则可以使用一个特殊的 `Body` 参数 `embed`：",
+      "answerable": true,
+      "split": "test",
+      "category": "嵌入请求体"
+    },
+    {
+      "id": "A029",
+      "question": "模型字段的 Field 应该从 fastapi 还是 pydantic 导入？",
+      "expected_document": "body-fields.md",
+      "expected_evidence": "要直接从 `pydantic` 导入 `Field`",
+      "answerable": true,
+      "split": "dev",
+      "category": "模型字段"
+    },
+    {
+      "id": "A030",
+      "question": "校验规则需要写在 Pydantic 模型内部而非路由函数里，可以用哪个工具？",
+      "expected_document": "body-fields.md",
+      "expected_evidence": "可以使用 Pydantic 的 `Field` 在 Pydantic 模型内部声明校验和元数据。",
+      "answerable": true,
+      "split": "dev",
+      "category": "字段校验"
+    },
+    {
+      "id": "A031",
+      "question": "要给字段补充更多 JSON Schema 元数据，应使用哪个配置名？",
+      "expected_document": "body-fields.md",
+      "expected_evidence": "可以在 `Field`、`Query`、`Body` 等对象里使用 `json_schema_extra` 声明更多信息",
+      "answerable": true,
+      "split": "test",
+      "category": "Schema元数据"
+    },
+    {
+      "id": "A032",
+      "question": "往 json_schema_extra 填入不属于 OpenAPI 规范的键，会给第三方验证工具带来什么问题？",
+      "expected_document": "body-fields.md",
+      "expected_evidence": "某些 OpenAPI 工具（例如 [OpenAPI 验证器](https://validator.swagger.io/)）可能无法处理你生成的架构。",
+      "answerable": true,
+      "split": "test",
+      "category": "工具兼容性"
+    },
+    {
+      "id": "A033",
+      "question": "模型中还能嵌套其他模型，嵌套深度是否只允许一层？",
+      "expected_document": "body-nested-models.md",
+      "expected_evidence": "你可以定义、校验、记录文档并使用任意深度嵌套的模型",
+      "answerable": true,
+      "split": "dev",
+      "category": "嵌套模型"
+    },
+    {
+      "id": "A034",
+      "question": "标签集合不希望保留重复字符串，Python 有哪种集合类型适合表达这种约束？",
+      "expected_document": "body-nested-models.md",
+      "expected_evidence": "Python 有一种用于保存唯一元素集合的特殊数据类型 `set`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "集合去重"
+    },
+    {
+      "id": "A035",
+      "question": "Image 模型的 url 不想只当普通文本，教程建议使用 Pydantic 的哪种类型？",
+      "expected_document": "body-nested-models.md",
+      "expected_evidence": "我们可以把它声明为 Pydantic 的 `HttpUrl`，而不是 `str`",
+      "answerable": true,
+      "split": "test",
+      "category": "专用类型"
+    },
+    {
+      "id": "A036",
+      "question": "JSON 对象的键只能是字符串，声明整数键字典后还需要手工转换这些键吗？",
+      "expected_document": "body-nested-models.md",
+      "expected_evidence": "只要这些字符串内容仅包含整数，Pydantic 就会对其进行转换并校验。",
+      "answerable": true,
+      "split": "test",
+      "category": "字典键转换"
+    },
+    {
+      "id": "A037",
+      "question": "datetime.datetime 在请求和响应中使用什么格式，教程给的时间示例长什么样？",
+      "expected_document": "extra-data-types.md",
+      "expected_evidence": "在请求和响应中将表示为 ISO 8601 格式的 `str` ，比如: `2008-09-15T15:53:00+05:00`.",
+      "answerable": true,
+      "split": "dev",
+      "category": "日期时间"
+    },
+    {
+      "id": "A038",
+      "question": "timedelta 如果使用数字表示，数字的类型和单位分别是什么？",
+      "expected_document": "extra-data-types.md",
+      "expected_evidence": "在请求和响应中将表示为 `float` 代表总秒数。",
+      "answerable": true,
+      "split": "dev",
+      "category": "时间差"
+    },
+    {
+      "id": "A039",
+      "question": "frozenset 接收列表数据时，重复元素会怎样处理？",
+      "expected_document": "extra-data-types.md",
+      "expected_evidence": "在请求中，列表将被读取，消除重复，并将其转换为一个 `set`。",
+      "answerable": true,
+      "split": "test",
+      "category": "冻结集合"
+    },
+    {
+      "id": "A040",
+      "question": "bytes 对应的字符串在生成的模式中会标注成哪一种 format？",
+      "expected_document": "extra-data-types.md",
+      "expected_evidence": "生成的模式将指定这个 `str` 是 `binary` \"格式\"。",
+      "answerable": true,
+      "split": "test",
+      "category": "二进制类型"
+    },
+    {
+      "id": "A041",
+      "question": "参数希望从 Cookie 里读取，省略 Cookie 声明会被误判成什么？",
+      "expected_document": "cookie-params.md",
+      "expected_evidence": "必须使用 `Cookie` 声明 cookie 参数，否则该参数会被解释为查询参数。",
+      "answerable": true,
+      "split": "dev",
+      "category": "Cookie来源"
+    },
+    {
+      "id": "A042",
+      "question": "Cookie 参数除了读取值，还能声明默认值和额外校验信息吗？",
+      "expected_document": "cookie-params.md",
+      "expected_evidence": "你可以定义默认值，以及所有额外的验证或注解参数：",
+      "answerable": true,
+      "split": "dev",
+      "category": "Cookie校验"
+    },
+    {
+      "id": "A043",
+      "question": "Cookie、Path、Query 的公共父类叫什么？",
+      "expected_document": "cookie-params.md",
+      "expected_evidence": "`Cookie` 、`Path` 、`Query` 是**兄弟类**，都继承自共用的 `Param` 类。",
+      "answerable": true,
+      "split": "test",
+      "category": "声明类关系"
+    },
+    {
+      "id": "A044",
+      "question": "为什么在文档界面填写 Cookie 后点 Execute，仍可能提示没有提交 Cookie？",
+      "expected_document": "cookie-params.md",
+      "expected_evidence": "由于文档界面依赖于**JavaScript**工作，cookies 也不会被发送",
+      "answerable": true,
+      "split": "test",
+      "category": "浏览器限制"
+    },
+    {
+      "id": "A045",
+      "question": "函数中写 user_agent，框架默认怎样将这个名字映射到标准请求头？",
+      "expected_document": "header-params.md",
+      "expected_evidence": "默认情况下，`Header` 把参数名中的字符由下划线（`_`）改为连字符（`-`）来提取并存档请求头",
+      "answerable": true,
+      "split": "dev",
+      "category": "请求头映射"
+    },
+    {
+      "id": "A046",
+      "question": "同名请求头出现好几次，希望一次接收所有值，应使用哪种 Python 容器？",
+      "expected_document": "header-params.md",
+      "expected_evidence": "使用 Python `list` 可以接收重复请求头所有的值。",
+      "answerable": true,
+      "split": "dev",
+      "category": "重复请求头"
+    },
+    {
+      "id": "A047",
+      "question": "关掉请求头下划线转换之前，教程提醒要注意什么代理兼容问题？",
+      "expected_document": "header-params.md",
+      "expected_evidence": "有些 HTTP 代理和服务器不支持使用带有下划线的请求头。",
+      "answerable": true,
+      "split": "test",
+      "category": "代理兼容性"
+    },
+    {
+      "id": "A048",
+      "question": "参数想读取 HTTP Header，却没有使用 Header 声明，会从哪里取值？",
+      "expected_document": "header-params.md",
+      "expected_evidence": "必须使用 `Header` 声明 header 参数，否则该参数会被解释为查询参数。",
+      "answerable": true,
+      "split": "test",
+      "category": "Header来源"
+    },
+    {
+      "id": "A049",
+      "question": "返回对象缺少响应模型要求的字段时，框架会把这份错误数据直接发给客户端吗？",
+      "expected_document": "response-model.md",
+      "expected_evidence": "FastAPI 将返回服务器错误而不是返回错误的数据。",
+      "answerable": true,
+      "split": "dev",
+      "category": "响应校验"
+    },
+    {
+      "id": "A050",
+      "question": "业务函数返回了额外字段，响应类型能否限制实际暴露给客户端的数据？",
+      "expected_document": "response-model.md",
+      "expected_evidence": "它会将输出数据**限制并过滤**为返回类型中定义的内容。",
+      "answerable": true,
+      "split": "dev",
+      "category": "响应过滤"
+    },
+    {
+      "id": "A051",
+      "question": "response_model 只能接受单个 Pydantic 模型，还是也能接受模型列表类型？",
+      "expected_document": "response-model.md",
+      "expected_evidence": "它可以是一个 Pydantic 模型，也可以是一个由 Pydantic 模型组成的 `list`，例如 `List[Item]`。",
+      "answerable": true,
+      "split": "test",
+      "category": "响应类型"
+    },
+    {
+      "id": "A052",
+      "question": "只想在响应中保留显式赋过值的字段，应该使用哪一个排除选项？",
+      "expected_document": "response-model.md",
+      "expected_evidence": "使用 `response_model_exclude_unset` 来仅返回显式设置的值。",
+      "answerable": true,
+      "split": "test",
+      "category": "默认字段过滤"
+    },
+    {
+      "id": "A053",
+      "question": "输入、输出和数据库模型有很多相同字段，教程怎样减少这部分重复定义？",
+      "expected_document": "extra-models.md",
+      "expected_evidence": "声明 `UserBase` 模型作为其它模型的基类。然后，用该类衍生出继承其属性（类型声明、校验等）的子类。",
+      "answerable": true,
+      "split": "dev",
+      "category": "模型复用"
+    },
+    {
+      "id": "A054",
+      "question": "把字典以双星号传给模型构造函数时，Python 实际会做什么？",
+      "expected_document": "extra-models.md",
+      "expected_evidence": "它会把 `user_dict` 的键和值作为关键字参数直接传递。",
+      "answerable": true,
+      "split": "dev",
+      "category": "字典解包"
+    },
+    {
+      "id": "A055",
+      "question": "同一个接口的响应可能是两种模型之一，应该用什么联合类型来声明？",
+      "expected_document": "extra-models.md",
+      "expected_evidence": "响应可以声明为两个或多个类型的 `Union`，即该响应可以是这些类型中的任意一种。",
+      "answerable": true,
+      "split": "test",
+      "category": "联合响应"
+    },
+    {
+      "id": "A056",
+      "question": "教程里的 fake_password_hasher 可以当作生产环境的安全密码方案吗？",
+      "expected_document": "extra-models.md",
+      "expected_evidence": "`fake_password_hasher` 和 `fake_save_user` 仅用于演示可能的数据流，当然并不提供真实的安全性。",
+      "answerable": true,
+      "split": "test",
+      "category": "演示安全边界"
+    },
+    {
+      "id": "A057",
+      "question": "没有另外指定时，成功响应的默认 HTTP 状态码是多少？",
+      "expected_document": "response-status-code.md",
+      "expected_evidence": "`200` 是默认状态码，表示一切“OK”",
+      "answerable": true,
+      "split": "dev",
+      "category": "默认状态码"
+    },
+    {
+      "id": "A058",
+      "question": "204 No Content 响应里可以再塞一份 JSON 响应体吗？",
+      "expected_document": "response-status-code.md",
+      "expected_evidence": "`204` 是一种特殊的例子，表示“无内容”。该响应在没有为客户端返回内容时使用，因此，该响应不能包含响应体",
+      "answerable": true,
+      "split": "dev",
+      "category": "无内容响应"
+    },
+    {
+      "id": "A059",
+      "question": "新资源创建成功，教程使用哪个状态码表达“已创建”？",
+      "expected_document": "response-status-code.md",
+      "expected_evidence": "`201` 表示“已创建”的状态码。",
+      "answerable": true,
+      "split": "test",
+      "category": "创建状态码"
+    },
+    {
+      "id": "A060",
+      "question": "路径操作上的 status_code 参数应传入状态名称文本，还是数字？",
+      "expected_document": "response-status-code.md",
+      "expected_evidence": "`status_code` 参数接收表示 HTTP 状态码的数字。",
+      "answerable": true,
+      "split": "test",
+      "category": "状态码声明"
+    },
+    {
+      "id": "A061",
+      "question": "客户端提交的是表单字段而非 JSON，接收参数应使用什么声明？",
+      "expected_document": "request-forms.md",
+      "expected_evidence": "当你需要接收表单字段而不是 JSON 时，可以使用 `Form`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "表单声明"
+    },
+    {
+      "id": "A062",
+      "question": "Form 应该从哪个包导入？",
+      "expected_document": "request-forms.md",
+      "expected_evidence": "从 `fastapi` 导入 `Form`：",
+      "answerable": true,
+      "split": "dev",
+      "category": "导入位置"
+    },
+    {
+      "id": "A063",
+      "question": "HTML 复选框没被勾选时浏览器不发这个字段，布尔表单参数怎样接收到 False？",
+      "expected_document": "request-forms.md",
+      "expected_evidence": "将布尔表单参数的默认值声明为 `False`，即可在复选框未选中时接收到 `False`",
+      "answerable": true,
+      "split": "test",
+      "category": "复选框默认值"
+    },
+    {
+      "id": "A064",
+      "question": "一个路径操作使用 Form 后，能否同时再声明按 JSON 接收的 Body 字段？",
+      "expected_document": "request-forms.md",
+      "expected_evidence": "你可以在一个*路径操作*中声明多个 `Form` 参数，但不能同时再声明要接收为 JSON 的 `Body` 字段",
+      "answerable": true,
+      "split": "test",
+      "category": "请求编码边界"
+    },
+    {
+      "id": "A065",
+      "question": "上传文件参数直接声明成 bytes，对内存有什么影响，适合多大的文件？",
+      "expected_document": "request-files.md",
+      "expected_evidence": "整个内容会存储在内存中，适用于小型文件。",
+      "answerable": true,
+      "split": "dev",
+      "category": "上传内存"
+    },
+    {
+      "id": "A066",
+      "question": "UploadFile 的 spooled 文件达到内存上限以后会存到哪里？",
+      "expected_document": "request-files.md",
+      "expected_evidence": "文件会先存储在内存中，直到达到最大上限，超过该上限后会写入磁盘。",
+      "answerable": true,
+      "split": "dev",
+      "category": "上传暂存"
+    },
+    {
+      "id": "A067",
+      "question": "已经 read 过上传内容，还想从头再读一次，应先把文件指针移到哪里？",
+      "expected_document": "request-files.md",
+      "expected_evidence": "`await myfile.seek(0)` 会移动到文件开头。",
+      "answerable": true,
+      "split": "test",
+      "category": "文件重复读取"
+    },
+    {
+      "id": "A068",
+      "question": "一次接收多个上传文件时，处理函数接收到的是哪种类型的集合？",
+      "expected_document": "request-files.md",
+      "expected_evidence": "接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。",
+      "answerable": true,
+      "split": "test",
+      "category": "多文件上传"
+    },
+    {
+      "id": "A069",
+      "question": "想把某个目录中的资源作为静态文件提供出去，可使用哪个类？",
+      "expected_document": "static-files.md",
+      "expected_evidence": "你可以使用 `StaticFiles` 从目录中自动提供静态文件。",
+      "answerable": true,
+      "split": "dev",
+      "category": "静态资源"
+    },
+    {
+      "id": "A070",
+      "question": "静态子应用挂载到 /static 后，哪些 URL 会交给它处理？",
+      "expected_document": "static-files.md",
+      "expected_evidence": "任何以 `\"/static\"` 开头的路径都会由它处理。",
+      "answerable": true,
+      "split": "dev",
+      "category": "挂载路径"
+    },
+    {
+      "id": "A071",
+      "question": "挂载静态应用时，directory=\"static\" 这个参数指的是 URL 前缀还是本地目录名？",
+      "expected_document": "static-files.md",
+      "expected_evidence": "`directory=\"static\"` 指的是包含你的静态文件的目录名称。",
+      "answerable": true,
+      "split": "test",
+      "category": "资源目录"
+    },
+    {
+      "id": "A072",
+      "question": "挂载的子应用是否会自动出现在主应用的 OpenAPI 文档中？",
+      "expected_document": "static-files.md",
+      "expected_evidence": "主应用的 OpenAPI 和文档不会包含已挂载应用的任何内容",
+      "answerable": true,
+      "split": "test",
+      "category": "子应用隔离"
+    },
+    {
+      "id": "A073",
+      "question": "遇到 HTTPException 时，应当 return 这个对象，还是直接 raise？",
+      "expected_document": "handling-errors.md",
+      "expected_evidence": "因为是 Python 异常，所以不能 `return`，只能 `raise`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "异常抛出"
+    },
+    {
+      "id": "A074",
+      "question": "HTTPException 的 detail 只能写字符串吗，能否传 JSON 可转换的对象？",
+      "expected_document": "handling-errors.md",
+      "expected_evidence": "可以用参数 `detail` 传递任何能转换为 JSON 的值，不仅限于 `str`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "错误详情"
+    },
+    {
+      "id": "A075",
+      "question": "请求参数校验失败时，FastAPI 内部会触发哪一种异常？",
+      "expected_document": "handling-errors.md",
+      "expected_evidence": "请求中包含无效数据时，**FastAPI** 内部会触发 `RequestValidationError`。",
+      "answerable": true,
+      "split": "test",
+      "category": "验证异常"
+    },
+    {
+      "id": "A076",
+      "question": "想替换默认的请求校验错误处理器，要给自己的处理函数加什么装饰器？",
+      "expected_document": "handling-errors.md",
+      "expected_evidence": "用 `@app.exception_handler(RequestValidationError)` 装饰你的异常处理器。",
+      "answerable": true,
+      "split": "test",
+      "category": "错误处理器"
+    },
+    {
+      "id": "A077",
+      "question": "两个服务只要域名相同就算同源吗，源还由哪些部分共同决定？",
+      "expected_document": "cors.md",
+      "expected_evidence": "源是协议（`http`，`https`）、域（`myapp.com`，`localhost`，`localhost.tiangolo.com`）以及端口（`80`、`443`、`8080`）的组合。",
+      "answerable": true,
+      "split": "dev",
+      "category": "同源定义"
+    },
+    {
+      "id": "A078",
+      "question": "启用跨域 Cookie 凭据后，还能把允许的源、方法和请求头统统设成星号吗？",
+      "expected_document": "cors.md",
+      "expected_evidence": "当 `allow_credentials` 设为 `True` 时，`allow_origins`、`allow_methods` 和 `allow_headers` 都不能设为 `['*']`。",
+      "answerable": true,
+      "split": "dev",
+      "category": "凭据跨域"
+    },
+    {
+      "id": "A079",
+      "question": "CORS 预检会用哪种 HTTP 方法，并带上哪两个关键请求头？",
+      "expected_document": "cors.md",
+      "expected_evidence": "带有 `Origin` 和 `Access-Control-Request-Method` 请求头的 `OPTIONS` 请求。",
+      "answerable": true,
+      "split": "test",
+      "category": "跨域预检"
+    },
+    {
+      "id": "A080",
+      "question": "浏览器缓存 CORS 响应的 max_age 参数，默认是多长时间、用什么单位？",
+      "expected_document": "cors.md",
+      "expected_evidence": "`max_age` - 设定浏览器缓存 CORS 响应的最长时间，单位是秒。默认为 `600`。",
+      "answerable": true,
+      "split": "test",
+      "category": "跨域缓存"
+    },
+    {
+      "id": "U001",
+      "question": "如何在 FastAPI 中实现 OAuth2 的 refresh token 轮换？请给出轮换与撤销的完整流程。",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的安全实现"
+    },
+    {
+      "id": "U002",
+      "question": "PostgreSQL 主库故障时，FastAPI 应如何自动切换到只读副本并保证事务一致性？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的数据库设计"
+    },
+    {
+      "id": "U003",
+      "question": "怎样配置 Kubernetes HPA，让 FastAPI 服务按请求队列长度扩容？请给出 YAML。",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的部署配置"
+    },
+    {
+      "id": "U004",
+      "question": "用 Celery 和 Redis 给失败任务重试三次，指数退避参数应该怎样设置？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的任务队列"
+    },
+    {
+      "id": "U005",
+      "question": "Stripe webhook 的签名校验应该用什么请求头和密钥算法？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的第三方集成"
+    },
+    {
+      "id": "U006",
+      "question": "如何给每个已登录用户实现每分钟一百次请求的令牌桶限流？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的限流实现"
+    },
+    {
+      "id": "U007",
+      "question": "多个进程之间怎样同步 WebSocket 聊天室的在线成员和广播消息？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的WebSocket设计"
+    },
+    {
+      "id": "U008",
+      "question": "FastAPI 服务怎样向 OTLP Collector 上报 OpenTelemetry 链路追踪？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的可观测配置"
+    },
+    {
+      "id": "U009",
+      "question": "生产环境 SQLAlchemy 迁移到 Alembic 后，如何安全回滚已经上线的数据库结构？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "未收录的数据库迁移"
+    },
+    {
+      "id": "U010",
+      "question": "同一个 UploadFile 请求允许上传的最大文件大小默认究竟是多少字节？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "dev",
+      "category": "相近主题缺少具体上限"
+    },
+    {
+      "id": "U011",
+      "question": "日本在 2027 年有哪些法定节假日？请给出完整日期。",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "知识库外事实"
+    },
+    {
+      "id": "U012",
+      "question": "今天 OpenAI 各个 API 模型每百万 token 的最新价格是多少？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "知识库外实时信息"
+    },
+    {
+      "id": "U013",
+      "question": "KnowTrace 线上生产环境的管理员密码是什么？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "未提供的私有信息"
+    },
+    {
+      "id": "U014",
+      "question": "我当前服务器的公网 IP 地址和正在监听的端口分别是什么？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "未提供的运行状态"
+    },
+    {
+      "id": "U015",
+      "question": "怎样申请和自动轮换双向 TLS 客户端证书？请给出 FastAPI 的完整生产配置。",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "未收录的TLS配置"
+    },
+    {
+      "id": "U016",
+      "question": "AWS ECS 上这个应用每月的实际云账单是多少日元？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "未提供的账单信息"
+    },
+    {
+      "id": "U017",
+      "question": "我们公司的 GDPR 数据保留政策要求保存用户日志多少天？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "未提供的组织政策"
+    },
+    {
+      "id": "U018",
+      "question": "怎样给 CORS 的允许源列表接入企业租户数据库，并实现无停机热更新？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "相近主题缺少业务实现"
+    },
+    {
+      "id": "U019",
+      "question": "HTTPException 出现后，如何配置 Sentry 自动指派 Jira 工单给值班工程师？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "相近主题缺少系统集成"
+    },
+    {
+      "id": "U020",
+      "question": "怎样实现断点续传并用 S3 multipart upload 合并分片，且校验最终文件哈希？",
+      "expected_document": null,
+      "expected_evidence": null,
+      "answerable": false,
+      "split": "test",
+      "category": "相近主题缺少上传协议"
+    }
+  ]
+}

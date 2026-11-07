@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    "Real local E5 search from UI returns expected source first for a cross-language question",
+    "Dense candidates remain unverified and cannot bypass local evidence admission",
+    "Evaluation exposes the same available local semantic modes",
+    "390px semantic selectors and status do not overflow",
+    "An older server without retrieval metadata keeps lexical modes usable and semantic options disabled"
+  ],
+  "errors": [],
+  "generated_requests": 0,
+  "runtime_network": "isolated loopback origin only"
+}

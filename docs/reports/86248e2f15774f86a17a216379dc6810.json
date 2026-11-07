@@ -1,0 +1,1329 @@
+{
+  "id": "86248e2f15774f86a17a216379dc6810",
+  "dataset_id": "fastapi-zh-100",
+  "dataset_name": "FastAPI 中文文档 · 100题",
+  "mode": "bm25",
+  "top_k": 5,
+  "split": "test",
+  "metrics": {
+    "recall_at_1": 0.9,
+    "recall_at_3": 0.95,
+    "recall_at_5": 0.975,
+    "mrr": 0.9229,
+    "refusal_accuracy": 1.0,
+    "false_refusal_rate": 0.575,
+    "p50_ms": 13.918,
+    "p95_ms": 17.927
+  },
+  "cases": [
+    {
+      "id": "A003",
+      "question": "应用文件不在当前默认位置时，开发启动命令能否接收文件路径？",
+      "split": "test",
+      "category": "开发启动",
+      "expected_document": "first-steps.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "first-steps.md",
+        "first-steps.md",
+        "first-steps.md",
+        "request-files.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 11.574,
+      "passed": false
+    },
+    {
+      "id": "A004",
+      "question": "FastAPI 这个类直接继承了哪个底层框架的类？",
+      "split": "test",
+      "category": "框架关系",
+      "expected_document": "first-steps.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "request-files.md",
+        "request-files.md",
+        "first-steps.md",
+        "request-forms.md",
+        "body-nested-models.md"
+      ],
+      "retrieved_document_ids": [
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "f434047bc92141d5b808deb24cebecd6"
+      ],
+      "hit_rank": 3,
+      "refused": true,
+      "latency_ms": 12.038,
+      "passed": false
+    },
+    {
+      "id": "A007",
+      "question": "预定义枚举额外继承 str，对自动生成的接口文档有什么帮助？",
+      "split": "test",
+      "category": "枚举参数",
+      "expected_document": "path-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "path-params.md",
+        "body-nested-models.md",
+        "first-steps.md",
+        "path-params.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "f434047bc92141d5b808deb24cebecd6",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 12.23,
+      "passed": false
+    },
+    {
+      "id": "A008",
+      "question": "文件路径参数需要匹配带斜杠的完整路径，转换器后缀该如何写？",
+      "split": "test",
+      "category": "路径转换器",
+      "expected_document": "path-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "path-params.md",
+        "body.md",
+        "path-params.md",
+        "first-steps.md",
+        "path-params.md"
+      ],
+      "retrieved_document_ids": [
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "61434527104a4519bb1f03c72133e787",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "ef3af70fc85a4756b80d02ec49c70850"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 12.878,
+      "passed": false
+    },
+    {
+      "id": "A011",
+      "question": "希望客户端可以不传某个查询参数，默认值可以怎样设置？",
+      "split": "test",
+      "category": "可选参数",
+      "expected_document": "query-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "query-params.md",
+        "query-params-str-validations.md",
+        "query-params-str-validations.md",
+        "query-params.md",
+        "query-params-str-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "4320291e58c941599dec50832629c337",
+        "c9779cec5220450c8a1de4843e27103f",
+        "c9779cec5220450c8a1de4843e27103f",
+        "4320291e58c941599dec50832629c337",
+        "c9779cec5220450c8a1de4843e27103f"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 12.213,
+      "passed": false
+    },
+    {
+      "id": "A012",
+      "question": "布尔查询参数 short 收到空字符串或者 maybe，会得到什么校验结果？",
+      "split": "test",
+      "category": "布尔参数",
+      "expected_document": "query-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "query-params.md",
+        "query-params-str-validations.md",
+        "query-params.md",
+        "query-params-str-validations.md",
+        "request-forms.md"
+      ],
+      "retrieved_document_ids": [
+        "4320291e58c941599dec50832629c337",
+        "c9779cec5220450c8a1de4843e27103f",
+        "4320291e58c941599dec50832629c337",
+        "c9779cec5220450c8a1de4843e27103f",
+        "a3d666bf57994f8cb4de14bebcbcc7d4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 13.92,
+      "passed": true
+    },
+    {
+      "id": "A015",
+      "question": "同一个处理函数中，路由变量和 Pydantic 模型分别从哪里取值？",
+      "split": "test",
+      "category": "参数来源",
+      "expected_document": "body.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-nested-models.md",
+        "extra-models.md",
+        "response-model.md",
+        "response-model.md",
+        "static-files.md"
+      ],
+      "retrieved_document_ids": [
+        "f434047bc92141d5b808deb24cebecd6",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "a009cdc97189438fbfb947997232539a",
+        "a009cdc97189438fbfb947997232539a",
+        "001ff6449e5140059e3784d3fa1ba953"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 20.007,
+      "passed": false
+    },
+    {
+      "id": "A016",
+      "question": "没有额外声明时，str 或 bool 这样的单一类型参数会被视为什么？",
+      "split": "test",
+      "category": "参数来源",
+      "expected_document": "body.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body.md",
+        "body-nested-models.md",
+        "body-multiple-params.md",
+        "cookie-params.md",
+        "query-params.md"
+      ],
+      "retrieved_document_ids": [
+        "61434527104a4519bb1f03c72133e787",
+        "f434047bc92141d5b808deb24cebecd6",
+        "e76247a114524a4e9fa159f935e140c4",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "4320291e58c941599dec50832629c337"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 15.59,
+      "passed": true
+    },
+    {
+      "id": "A019",
+      "question": "Python 变量名不能带连字符，但 URL 参数需要叫 item-query，可以用什么解决？",
+      "split": "test",
+      "category": "参数别名",
+      "expected_document": "query-params-str-validations.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "query-params-str-validations.md",
+        "header-params.md",
+        "query-params.md",
+        "path-params.md",
+        "query-params-str-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "c9779cec5220450c8a1de4843e27103f",
+        "21d6a09f1900416b99babecec29ece90",
+        "4320291e58c941599dec50832629c337",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "c9779cec5220450c8a1de4843e27103f"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 13.66,
+      "passed": true
+    },
+    {
+      "id": "A020",
+      "question": "旧查询参数还要兼容现有客户端，如何让文档提示它已经弃用？",
+      "split": "test",
+      "category": "弃用标记",
+      "expected_document": "query-params-str-validations.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "query-params-str-validations.md",
+        "body.md",
+        "query-params-str-validations.md",
+        "query-params.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "c9779cec5220450c8a1de4843e27103f",
+        "61434527104a4519bb1f03c72133e787",
+        "c9779cec5220450c8a1de4843e27103f",
+        "4320291e58c941599dec50832629c337",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 12.405,
+      "passed": false
+    },
+    {
+      "id": "A023",
+      "question": "数值约束里的 gt 表示大于，还是大于等于？",
+      "split": "test",
+      "category": "排除边界",
+      "expected_document": "path-params-numeric-validations.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "query-params-str-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "c9779cec5220450c8a1de4843e27103f"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 11.297,
+      "passed": true
+    },
+    {
+      "id": "A024",
+      "question": "Query 和 Path 的数值范围校验只适用于整数吗？",
+      "split": "test",
+      "category": "浮点约束",
+      "expected_document": "path-params-numeric-validations.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md",
+        "path-params-numeric-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "4d0dbb49429b4520a380b8e0cde5a8e9"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 17.938,
+      "passed": false
+    },
+    {
+      "id": "A027",
+      "question": "importance 是单个数值，但希望它出现在 JSON 请求体而非查询串，需要什么声明？",
+      "split": "test",
+      "category": "单值请求体",
+      "expected_document": "body-multiple-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-multiple-params.md",
+        "body-multiple-params.md",
+        "body-multiple-params.md",
+        "query-params-str-validations.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "e76247a114524a4e9fa159f935e140c4",
+        "e76247a114524a4e9fa159f935e140c4",
+        "e76247a114524a4e9fa159f935e140c4",
+        "c9779cec5220450c8a1de4843e27103f",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 13.915,
+      "passed": false
+    },
+    {
+      "id": "A028",
+      "question": "只有一个 item 模型，却想让 JSON 外面再包一层 item 键，Body 有什么参数可用？",
+      "split": "test",
+      "category": "嵌入请求体",
+      "expected_document": "body-multiple-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-multiple-params.md",
+        "body-nested-models.md",
+        "body-multiple-params.md",
+        "body.md",
+        "body-multiple-params.md"
+      ],
+      "retrieved_document_ids": [
+        "e76247a114524a4e9fa159f935e140c4",
+        "f434047bc92141d5b808deb24cebecd6",
+        "e76247a114524a4e9fa159f935e140c4",
+        "61434527104a4519bb1f03c72133e787",
+        "e76247a114524a4e9fa159f935e140c4"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 17.913,
+      "passed": false
+    },
+    {
+      "id": "A031",
+      "question": "要给字段补充更多 JSON Schema 元数据，应使用哪个配置名？",
+      "split": "test",
+      "category": "Schema元数据",
+      "expected_document": "body-fields.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-fields.md",
+        "first-steps.md",
+        "body-fields.md",
+        "path-params-numeric-validations.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "f15a7e24b8eb4159996450a209d7ac80",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "f15a7e24b8eb4159996450a209d7ac80",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 14.747,
+      "passed": false
+    },
+    {
+      "id": "A032",
+      "question": "往 json_schema_extra 填入不属于 OpenAPI 规范的键，会给第三方验证工具带来什么问题？",
+      "split": "test",
+      "category": "工具兼容性",
+      "expected_document": "body-fields.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-fields.md",
+        "request-forms.md",
+        "first-steps.md",
+        "path-params.md",
+        "path-params.md"
+      ],
+      "retrieved_document_ids": [
+        "f15a7e24b8eb4159996450a209d7ac80",
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "ef3af70fc85a4756b80d02ec49c70850"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 13.915,
+      "passed": true
+    },
+    {
+      "id": "A035",
+      "question": "Image 模型的 url 不想只当普通文本，教程建议使用 Pydantic 的哪种类型？",
+      "split": "test",
+      "category": "专用类型",
+      "expected_document": "body-nested-models.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-nested-models.md",
+        "body-nested-models.md",
+        "extra-models.md",
+        "body-nested-models.md",
+        "body-nested-models.md"
+      ],
+      "retrieved_document_ids": [
+        "f434047bc92141d5b808deb24cebecd6",
+        "f434047bc92141d5b808deb24cebecd6",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "f434047bc92141d5b808deb24cebecd6",
+        "f434047bc92141d5b808deb24cebecd6"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 13.471,
+      "passed": false
+    },
+    {
+      "id": "A036",
+      "question": "JSON 对象的键只能是字符串，声明整数键字典后还需要手工转换这些键吗？",
+      "split": "test",
+      "category": "字典键转换",
+      "expected_document": "body-nested-models.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "body-nested-models.md",
+        "query-params.md",
+        "path-params.md",
+        "request-files.md",
+        "query-params-str-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "f434047bc92141d5b808deb24cebecd6",
+        "4320291e58c941599dec50832629c337",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "c9779cec5220450c8a1de4843e27103f"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 17.862,
+      "passed": false
+    },
+    {
+      "id": "A039",
+      "question": "frozenset 接收列表数据时，重复元素会怎样处理？",
+      "split": "test",
+      "category": "冻结集合",
+      "expected_document": "extra-data-types.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "extra-data-types.md",
+        "body-nested-models.md",
+        "body-nested-models.md",
+        "handling-errors.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "28ad29a958ea49c38e3785d0689e82fd",
+        "f434047bc92141d5b808deb24cebecd6",
+        "f434047bc92141d5b808deb24cebecd6",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 15.001,
+      "passed": true
+    },
+    {
+      "id": "A040",
+      "question": "bytes 对应的字符串在生成的模式中会标注成哪一种 format？",
+      "split": "test",
+      "category": "二进制类型",
+      "expected_document": "extra-data-types.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "extra-data-types.md",
+        "request-files.md",
+        "body-nested-models.md",
+        "query-params-str-validations.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "28ad29a958ea49c38e3785d0689e82fd",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "f434047bc92141d5b808deb24cebecd6",
+        "c9779cec5220450c8a1de4843e27103f",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 13.436,
+      "passed": true
+    },
+    {
+      "id": "A043",
+      "question": "Cookie、Path、Query 的公共父类叫什么？",
+      "split": "test",
+      "category": "声明类关系",
+      "expected_document": "cookie-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "cookie-params.md",
+        "cookie-params.md",
+        "header-params.md",
+        "cookie-params.md",
+        "header-params.md"
+      ],
+      "retrieved_document_ids": [
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "21d6a09f1900416b99babecec29ece90",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "21d6a09f1900416b99babecec29ece90"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 16.802,
+      "passed": false
+    },
+    {
+      "id": "A044",
+      "question": "为什么在文档界面填写 Cookie 后点 Execute，仍可能提示没有提交 Cookie？",
+      "split": "test",
+      "category": "浏览器限制",
+      "expected_document": "cookie-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "cookie-params.md",
+        "cookie-params.md",
+        "cookie-params.md",
+        "cookie-params.md",
+        "response-model.md"
+      ],
+      "retrieved_document_ids": [
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "a3accd88076f4987a6ee6be8e2a2adbf",
+        "a009cdc97189438fbfb947997232539a"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 15.836,
+      "passed": true
+    },
+    {
+      "id": "A047",
+      "question": "关掉请求头下划线转换之前，教程提醒要注意什么代理兼容问题？",
+      "split": "test",
+      "category": "代理兼容性",
+      "expected_document": "header-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "header-params.md",
+        "header-params.md",
+        "header-params.md",
+        "body-multiple-params.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "21d6a09f1900416b99babecec29ece90",
+        "21d6a09f1900416b99babecec29ece90",
+        "21d6a09f1900416b99babecec29ece90",
+        "e76247a114524a4e9fa159f935e140c4",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 15.048,
+      "passed": false
+    },
+    {
+      "id": "A048",
+      "question": "参数想读取 HTTP Header，却没有使用 Header 声明，会从哪里取值？",
+      "split": "test",
+      "category": "Header来源",
+      "expected_document": "header-params.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "header-params.md",
+        "header-params.md",
+        "header-params.md",
+        "path-params-numeric-validations.md",
+        "header-params.md"
+      ],
+      "retrieved_document_ids": [
+        "21d6a09f1900416b99babecec29ece90",
+        "21d6a09f1900416b99babecec29ece90",
+        "21d6a09f1900416b99babecec29ece90",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "21d6a09f1900416b99babecec29ece90"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 13.78,
+      "passed": false
+    },
+    {
+      "id": "A051",
+      "question": "response_model 只能接受单个 Pydantic 模型，还是也能接受模型列表类型？",
+      "split": "test",
+      "category": "响应类型",
+      "expected_document": "response-model.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "extra-models.md",
+        "body-nested-models.md",
+        "body.md",
+        "response-model.md",
+        "response-model.md"
+      ],
+      "retrieved_document_ids": [
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "f434047bc92141d5b808deb24cebecd6",
+        "61434527104a4519bb1f03c72133e787",
+        "a009cdc97189438fbfb947997232539a",
+        "a009cdc97189438fbfb947997232539a"
+      ],
+      "hit_rank": 4,
+      "refused": true,
+      "latency_ms": 13.571,
+      "passed": false
+    },
+    {
+      "id": "A052",
+      "question": "只想在响应中保留显式赋过值的字段，应该使用哪一个排除选项？",
+      "split": "test",
+      "category": "默认字段过滤",
+      "expected_document": "response-model.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "response-model.md",
+        "extra-models.md",
+        "cors.md",
+        "extra-data-types.md",
+        "extra-data-types.md"
+      ],
+      "retrieved_document_ids": [
+        "a009cdc97189438fbfb947997232539a",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "28ad29a958ea49c38e3785d0689e82fd",
+        "28ad29a958ea49c38e3785d0689e82fd"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 11.842,
+      "passed": false
+    },
+    {
+      "id": "A055",
+      "question": "同一个接口的响应可能是两种模型之一，应该用什么联合类型来声明？",
+      "split": "test",
+      "category": "联合响应",
+      "expected_document": "extra-models.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "response-model.md",
+        "response-model.md",
+        "extra-models.md",
+        "body.md",
+        "extra-models.md"
+      ],
+      "retrieved_document_ids": [
+        "a009cdc97189438fbfb947997232539a",
+        "a009cdc97189438fbfb947997232539a",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "61434527104a4519bb1f03c72133e787",
+        "f1da33e9a39b426e9be9be1bb8051824"
+      ],
+      "hit_rank": 3,
+      "refused": true,
+      "latency_ms": 17.711,
+      "passed": false
+    },
+    {
+      "id": "A056",
+      "question": "教程里的 fake_password_hasher 可以当作生产环境的安全密码方案吗？",
+      "split": "test",
+      "category": "演示安全边界",
+      "expected_document": "extra-models.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "extra-models.md",
+        "extra-models.md",
+        "handling-errors.md",
+        "first-steps.md",
+        "request-forms.md"
+      ],
+      "retrieved_document_ids": [
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "a3d666bf57994f8cb4de14bebcbcc7d4"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 13.5,
+      "passed": false
+    },
+    {
+      "id": "A059",
+      "question": "新资源创建成功，教程使用哪个状态码表达“已创建”？",
+      "split": "test",
+      "category": "创建状态码",
+      "expected_document": "response-status-code.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "response-status-code.md",
+        "handling-errors.md",
+        "response-status-code.md",
+        "response-status-code.md",
+        "response-status-code.md"
+      ],
+      "retrieved_document_ids": [
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "3c075f6e846648129dcee3927cf3cdc0"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 11.072,
+      "passed": true
+    },
+    {
+      "id": "A060",
+      "question": "路径操作上的 status_code 参数应传入状态名称文本，还是数字？",
+      "split": "test",
+      "category": "状态码声明",
+      "expected_document": "response-status-code.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "response-status-code.md",
+        "response-status-code.md",
+        "body.md",
+        "response-status-code.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "61434527104a4519bb1f03c72133e787",
+        "3c075f6e846648129dcee3927cf3cdc0",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 13.035,
+      "passed": true
+    },
+    {
+      "id": "A063",
+      "question": "HTML 复选框没被勾选时浏览器不发这个字段，布尔表单参数怎样接收到 False？",
+      "split": "test",
+      "category": "复选框默认值",
+      "expected_document": "request-forms.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "request-forms.md",
+        "request-forms.md",
+        "request-forms.md",
+        "query-params.md",
+        "request-forms.md"
+      ],
+      "retrieved_document_ids": [
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "4320291e58c941599dec50832629c337",
+        "a3d666bf57994f8cb4de14bebcbcc7d4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 12.618,
+      "passed": true
+    },
+    {
+      "id": "A064",
+      "question": "一个路径操作使用 Form 后，能否同时再声明按 JSON 接收的 Body 字段？",
+      "split": "test",
+      "category": "请求编码边界",
+      "expected_document": "request-forms.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "request-forms.md",
+        "request-files.md",
+        "request-forms.md",
+        "body-fields.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "a3d666bf57994f8cb4de14bebcbcc7d4",
+        "f15a7e24b8eb4159996450a209d7ac80",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 15.447,
+      "passed": true
+    },
+    {
+      "id": "A067",
+      "question": "已经 read 过上传内容，还想从头再读一次，应先把文件指针移到哪里？",
+      "split": "test",
+      "category": "文件重复读取",
+      "expected_document": "request-files.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "request-files.md",
+        "request-files.md",
+        "request-files.md",
+        "request-files.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 15.31,
+      "passed": false
+    },
+    {
+      "id": "A068",
+      "question": "一次接收多个上传文件时，处理函数接收到的是哪种类型的集合？",
+      "split": "test",
+      "category": "多文件上传",
+      "expected_document": "request-files.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "request-files.md",
+        "query-params-str-validations.md",
+        "request-files.md",
+        "handling-errors.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "c9779cec5220450c8a1de4843e27103f",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 15.591,
+      "passed": false
+    },
+    {
+      "id": "A071",
+      "question": "挂载静态应用时，directory=\"static\" 这个参数指的是 URL 前缀还是本地目录名？",
+      "split": "test",
+      "category": "资源目录",
+      "expected_document": "static-files.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "static-files.md",
+        "static-files.md",
+        "static-files.md",
+        "first-steps.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "001ff6449e5140059e3784d3fa1ba953",
+        "001ff6449e5140059e3784d3fa1ba953",
+        "001ff6449e5140059e3784d3fa1ba953",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 17.776,
+      "passed": true
+    },
+    {
+      "id": "A072",
+      "question": "挂载的子应用是否会自动出现在主应用的 OpenAPI 文档中？",
+      "split": "test",
+      "category": "子应用隔离",
+      "expected_document": "static-files.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "static-files.md",
+        "static-files.md",
+        "query-params-str-validations.md",
+        "first-steps.md",
+        "body.md"
+      ],
+      "retrieved_document_ids": [
+        "001ff6449e5140059e3784d3fa1ba953",
+        "001ff6449e5140059e3784d3fa1ba953",
+        "c9779cec5220450c8a1de4843e27103f",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "61434527104a4519bb1f03c72133e787"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 18.155,
+      "passed": true
+    },
+    {
+      "id": "A075",
+      "question": "请求参数校验失败时，FastAPI 内部会触发哪一种异常？",
+      "split": "test",
+      "category": "验证异常",
+      "expected_document": "handling-errors.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 17.663,
+      "passed": true
+    },
+    {
+      "id": "A076",
+      "question": "想替换默认的请求校验错误处理器，要给自己的处理函数加什么装饰器？",
+      "split": "test",
+      "category": "错误处理器",
+      "expected_document": "handling-errors.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 15.371,
+      "passed": true
+    },
+    {
+      "id": "A079",
+      "question": "CORS 预检会用哪种 HTTP 方法，并带上哪两个关键请求头？",
+      "split": "test",
+      "category": "跨域预检",
+      "expected_document": "cors.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "cors.md",
+        "cors.md",
+        "cors.md",
+        "header-params.md",
+        "cors.md"
+      ],
+      "retrieved_document_ids": [
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "21d6a09f1900416b99babecec29ece90",
+        "5c6abe403de44815b6f4799d3e6804fb"
+      ],
+      "hit_rank": 1,
+      "refused": true,
+      "latency_ms": 12.568,
+      "passed": false
+    },
+    {
+      "id": "A080",
+      "question": "浏览器缓存 CORS 响应的 max_age 参数，默认是多长时间、用什么单位？",
+      "split": "test",
+      "category": "跨域缓存",
+      "expected_document": "cors.md",
+      "answerable": true,
+      "retrieved_documents": [
+        "cors.md",
+        "cors.md",
+        "first-steps.md",
+        "cors.md",
+        "request-forms.md"
+      ],
+      "retrieved_document_ids": [
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "a3d666bf57994f8cb4de14bebcbcc7d4"
+      ],
+      "hit_rank": 1,
+      "refused": false,
+      "latency_ms": 16.299,
+      "passed": true
+    },
+    {
+      "id": "U011",
+      "question": "日本在 2027 年有哪些法定节假日？请给出完整日期。",
+      "split": "test",
+      "category": "知识库外事实",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "extra-data-types.md",
+        "response-model.md"
+      ],
+      "retrieved_document_ids": [
+        "28ad29a958ea49c38e3785d0689e82fd",
+        "a009cdc97189438fbfb947997232539a"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 13.243,
+      "passed": true
+    },
+    {
+      "id": "U012",
+      "question": "今天 OpenAI 各个 API 模型每百万 token 的最新价格是多少？",
+      "split": "test",
+      "category": "知识库外实时信息",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "header-params.md",
+        "body-nested-models.md",
+        "body.md",
+        "response-model.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "21d6a09f1900416b99babecec29ece90",
+        "f434047bc92141d5b808deb24cebecd6",
+        "61434527104a4519bb1f03c72133e787",
+        "a009cdc97189438fbfb947997232539a",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 14.408,
+      "passed": true
+    },
+    {
+      "id": "U013",
+      "question": "KnowTrace 线上生产环境的管理员密码是什么？",
+      "split": "test",
+      "category": "未提供的私有信息",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "extra-models.md",
+        "response-model.md",
+        "response-model.md",
+        "extra-models.md",
+        "extra-models.md"
+      ],
+      "retrieved_document_ids": [
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "a009cdc97189438fbfb947997232539a",
+        "a009cdc97189438fbfb947997232539a",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "f1da33e9a39b426e9be9be1bb8051824"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 14.579,
+      "passed": true
+    },
+    {
+      "id": "U014",
+      "question": "我当前服务器的公网 IP 地址和正在监听的端口分别是什么？",
+      "split": "test",
+      "category": "未提供的运行状态",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "cors.md",
+        "first-steps.md",
+        "first-steps.md",
+        "path-params.md",
+        "cors.md"
+      ],
+      "retrieved_document_ids": [
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "5c6abe403de44815b6f4799d3e6804fb"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 12.193,
+      "passed": true
+    },
+    {
+      "id": "U015",
+      "question": "怎样申请和自动轮换双向 TLS 客户端证书？请给出 FastAPI 的完整生产配置。",
+      "split": "test",
+      "category": "未收录的TLS配置",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "handling-errors.md",
+        "handling-errors.md",
+        "path-params.md",
+        "handling-errors.md",
+        "first-steps.md"
+      ],
+      "retrieved_document_ids": [
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "384fe3be44ea44ccb7b4847053a1713a"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 15.277,
+      "passed": true
+    },
+    {
+      "id": "U016",
+      "question": "AWS ECS 上这个应用每月的实际云账单是多少日元？",
+      "split": "test",
+      "category": "未提供的账单信息",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "query-params-str-validations.md",
+        "first-steps.md",
+        "static-files.md",
+        "path-params-numeric-validations.md",
+        "static-files.md"
+      ],
+      "retrieved_document_ids": [
+        "c9779cec5220450c8a1de4843e27103f",
+        "384fe3be44ea44ccb7b4847053a1713a",
+        "001ff6449e5140059e3784d3fa1ba953",
+        "4d0dbb49429b4520a380b8e0cde5a8e9",
+        "001ff6449e5140059e3784d3fa1ba953"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 17.27,
+      "passed": true
+    },
+    {
+      "id": "U017",
+      "question": "我们公司的 GDPR 数据保留政策要求保存用户日志多少天？",
+      "split": "test",
+      "category": "未提供的组织政策",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "body-nested-models.md",
+        "response-model.md",
+        "response-model.md",
+        "path-params.md",
+        "query-params-str-validations.md"
+      ],
+      "retrieved_document_ids": [
+        "f434047bc92141d5b808deb24cebecd6",
+        "a009cdc97189438fbfb947997232539a",
+        "a009cdc97189438fbfb947997232539a",
+        "ef3af70fc85a4756b80d02ec49c70850",
+        "c9779cec5220450c8a1de4843e27103f"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 12.203,
+      "passed": true
+    },
+    {
+      "id": "U018",
+      "question": "怎样给 CORS 的允许源列表接入企业租户数据库，并实现无停机热更新？",
+      "split": "test",
+      "category": "相近主题缺少业务实现",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "cors.md",
+        "cors.md",
+        "cors.md",
+        "request-files.md",
+        "extra-data-types.md"
+      ],
+      "retrieved_document_ids": [
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "5c6abe403de44815b6f4799d3e6804fb",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "28ad29a958ea49c38e3785d0689e82fd"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 11.948,
+      "passed": true
+    },
+    {
+      "id": "U019",
+      "question": "HTTPException 出现后，如何配置 Sentry 自动指派 Jira 工单给值班工程师？",
+      "split": "test",
+      "category": "相近主题缺少系统集成",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "handling-errors.md",
+        "handling-errors.md",
+        "query-params-str-validations.md",
+        "handling-errors.md",
+        "handling-errors.md"
+      ],
+      "retrieved_document_ids": [
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "c9779cec5220450c8a1de4843e27103f",
+        "22b22571a72e46129dd1f6461c419ab4",
+        "22b22571a72e46129dd1f6461c419ab4"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 12.828,
+      "passed": true
+    },
+    {
+      "id": "U020",
+      "question": "怎样实现断点续传并用 S3 multipart upload 合并分片，且校验最终文件哈希？",
+      "split": "test",
+      "category": "相近主题缺少上传协议",
+      "expected_document": null,
+      "answerable": false,
+      "retrieved_documents": [
+        "request-files.md",
+        "request-files.md",
+        "extra-models.md",
+        "request-files.md",
+        "request-files.md"
+      ],
+      "retrieved_document_ids": [
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "f1da33e9a39b426e9be9be1bb8051824",
+        "efe2f877ce874ad9bb38aa948ab0203c",
+        "efe2f877ce874ad9bb38aa948ab0203c"
+      ],
+      "hit_rank": null,
+      "refused": true,
+      "latency_ms": 14.637,
+      "passed": true
+    }
+  ],
+  "created_at": "2026-11-07T12:21:42.612926+00:00",
+  "duration_ms": 1591.202,
+  "scope": {
+    "allowed_kb_ids": [
+      "kb-engineering"
+    ],
+    "case_count": 50,
+    "answerable": 40,
+    "unanswerable": 10
+  },
+  "dataset_sha256": "254fbd84a2c865d6f0d689b99801ddd43fa0423b6c557a204d157bc7c87a9e13",
+  "manifest_sha256": "ef6edf36e14b7a0a1bcd45bab6e5a369f7df0a3849ed6b7088fbf0d175c3b9a3",
+  "corpus_commit": "8e3db5153ec314d6e7775cd0ea39a46e95bfddb0",
+  "methodology": "AI-assisted source-checked draft, awaiting independent human review. Chunk ranking from search, independent of answer refusal; expected-document IDs bound through verified file hashes; no LLM judge. Sequential ask latency after search warm-up, not cold start or throughput. Refusal accuracy uses unanswerable cases only.",
+  "owner_user_id": "cli"
+}
